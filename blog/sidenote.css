@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700&display=swap');
+
+/* Layout */
+
+body {
+    font-family:'Nunito', sans-serif;
+    font-size:16px;
+    background: #EFF3F6;
+    left-margin:3%;
+}
+
+div {
+    text-align: justify;
+    width: 68.75%;
+    max-width: 50em;
+    min-width: 30em;
+}
+
+/* Sidenote code */
+
+span.note {
+    float: right;
+    width: 42%;
+    margin-right: -45%;
+    font-family:'Nunito', sans-serif;
+    color: #214E70;
+    font-size: 87.5%;
+    font-weight:400;
+    text-align: left;
+    padding-bottom: 1em;
+}
+
+span.check {
+    color: #FF0000;
+}
+
+/* Formatting stuff */
+
+code {
+    font-family: 'Inconsolata', monospace;
+}
+
+.blockquote {
+    padding: 0.75em 1em 0.625em 1em;
+    border-radius: 0.375em;
+    border-left-style: solid;
+    border-width: 0.375em;
+    border-color: #618098;
+    background: #EFF3F6;
+}
+
+.codeblock {
+    padding: 0.75em 0em 0.625em 1em;
+    border-radius: 0.375em;
+    border-left-style: solid;
+    border-width: 0.375em;
+    border-color: #618098;
+    font-family: 'Inconsolata', monospace;
+    font-weight:700;
+    background: black;
+    color: #ADB9C2;
+}
+
+.term {
+    font-style: italic;
+    color:#214E70;
+}
+
+.sc {
+    font-variant: small-caps;
+    font-size:112.5%;
+    line-height:88.89%;    /* 1 / 1.125 */
+/*    font-weight:400;*/
+    letter-Spacing: 0.03125em;
+}
+
+p.abstract {
+    font-size: 93.75%;
+    color: #666;
+    font-style: italic;
+}
+
+img {
+    text-align: center;
+    border-radius: 0.25em;
+    border-style: solid;
+    border-color: #618098;
+    border-width:0.25em;
+}
+
+/*Headers*/
+
+h1 {    
+    font-size:150%; /* 150 * 2/3 == 100 (the base font size) */
+    color:#618098;
+    font-weight:700;
+}
+
+h2 { 
+    font-size:137.5%; /* 150 * 11/12 == 137.5 */
+    color:#618098;
+    font-weight:400;
+}
+
+h3 { 
+    font-size:112.5%; /* 150 * 3/4 == 112.5*/
+    color:#618098;
+    margin-top:0em;
+    font-weight:400;
+}
+/*Links and link formatting*/
+
+a:link {
+    color:#214E70; 
+    border-bottom: 1px dotted #673E13; 
+    text-decoration:none;
+  }
+  
+a:visited {
+    color:#214E70; 
+    text-decoration:none;
+  }
+  
+a:hover {
+    color:#663E08; 
+    border-bottom: 1px; 
+    text-decoration:none;
+  }
+  
+a.ext:after {
+  content: "\21D7";
+}
+
+a.doc:after {
+content: "\21D3";
+}
+  
+/*Lists and list formatting*/
+
+ul {
+    padding-left: 1.625em;
+}
+
+li {
+    padding-left: 0.375em;
+}
+li:not(:last-child) {
+    margin-bottom: 0.5em;
+}
