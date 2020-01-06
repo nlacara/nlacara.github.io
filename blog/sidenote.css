@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,600,700&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700&display=swap');
 
 /* Layout */
@@ -8,6 +8,7 @@ body {
     font-size:16px;
     background: #EFF3F6;
     margin-left:1.5em;
+    counter-reset: example;
 }
 
 div {
@@ -63,8 +64,14 @@ code {
 }
 
 .term {
-    font-style: italic;
-    color:#214E70;
+/*     font-style: italic; */
+    font-variant: small-caps;
+    font-size:106.25%;
+    line-height:94.12%;    /* 1 / 1.0625 */
+    letter-Spacing: 0.03125em;
+    font-weight:400;
+/*     color:#214E70; */
+    color:#663E08;
 }
 
 .sc {
@@ -89,6 +96,13 @@ img {
     border-width:0.25em;
 }
 
+hr {
+    width: 97%;
+    max-width: 73em;
+    min-width: 43em;
+    margin: 0px;
+}
+
 /*Headers*/
 
 h1 {    
@@ -109,6 +123,28 @@ h3 {
     margin-top:0em;
     font-weight:400;
 }
+
+/*Lists*/
+
+ol {
+    list-style-type: lower-alpha;
+}
+
+/* The following should set up running numbered lists for examples.
+   As of 2019-12-29 works with Firefox but, unfortunately, not chrome... */
+
+ol.examples {
+    list-style-type: decimal;
+}
+
+ol.examples li {
+    counter-increment: example;
+}
+
+ol.examples li::marker {
+    content: "(" counters(example, ".") ")"
+}
+
 /*Links and link formatting*/
 
 a:link {
@@ -133,9 +169,14 @@ a.ext:after {
 }
 
 a.doc:after {
-content: "\21D3";
+content: " \1f5ce";  /* Document character */
+/* content: "\2B8B"; */ /* Down arrow in circle*/
 }
   
+a.int:after {
+content: "\21B4";
+}
+
 /*Lists and list formatting*/
 
 ul {
