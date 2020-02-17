@@ -9,6 +9,7 @@ body {
     background: #EFF3F6;
     margin-left:1.5em;
     counter-reset: example;
+    padding-top: 32px;
 }
 
 div {
@@ -16,6 +17,27 @@ div {
     width: 68.75%;
     max-width: 50em;
     min-width: 30em;
+}
+
+header {
+    height: 32px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-left:0.5em;
+    padding-top:8px;
+    background: #214E70;
+    border-width: 1em;
+    border-color: #092942;
+    border-left-style: solid;
+    color: #ADB9C2;
+}
+
+header .nav {
+    position: fixed;
+    right: 0;
+    padding-right: 1em;
 }
 
 /* Sidenote code */
@@ -94,6 +116,13 @@ img {
     border-style: solid;
     border-color: #618098;
     border-width:0.25em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+img.noborder {
+    border-width:0em;
 }
 
 hr {
@@ -190,6 +219,27 @@ a.int:after {
 content: "\21B4";
 }
 
+header a:link 
+  {
+    color:#EFF3F6; 
+    border-bottom: 1px dotted #EFF3F6; 
+    text-decoration:none;
+  }
+  
+header a:visited 
+  {
+    color:#EFF3F6; 
+    border-bottom: 1px dotted #EFF3F6; 
+    text-decoration:none;  }
+  
+header a:hover
+  {
+    color:#ECC590; 
+    border-bottom: 1px; 
+    text-decoration:none;
+  }
+
+
 /*Lists and list formatting*/
 
 ul {
@@ -200,6 +250,7 @@ li {
     padding-left: 0.375em;
     margin-bottom: 0.5em;
 }
+
 
 /*li:not(:last-child) {
     margin-bottom: 0.5em;
