@@ -1,15 +1,17 @@
-@import url('https://fonts.googleapis.com/css?family=Nunito:400,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700&display=swap');
 
 /* Layout */
 
 body {
-    font-family:'Nunito', sans-serif;
+    font-family:'Lato', sans-serif;
     font-size:16px;
+    line-height:1.375;
     background: #EFF3F6;
     margin-left:1.5em;
     counter-reset: example;
-    padding-top: 32px;
+/*     counter-reset: tab; */
+    padding-top: 4ex;
 }
 
 div {
@@ -20,13 +22,14 @@ div {
 }
 
 header {
-    height: 32px;
+    height: 4ex;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    padding-left:0.5em;
-    padding-top:8px;
+    padding-left: 0.5em;
+    padding-top: 1ex;
+/*     padding-bottom: 4px; */
     background: #214E70;
     border-width: 1em;
     border-color: #092942;
@@ -46,12 +49,12 @@ span.note {
     float: right;
     width: 42%;
     margin-right: -45%;
-    font-family:'Nunito', sans-serif;
+    font-family:'Lato', sans-serif;
     color: #214E70;
     font-size: 87.5%;
     font-weight:400;
     text-align: left;
-    padding-bottom: 1em;
+    padding-bottom: 1ex;
 }
 
 span.check {
@@ -86,18 +89,16 @@ code {
 }
 
 .term {
-/*     font-style: italic; */
     font-variant: small-caps;
-    font-size:106.25%;
-    line-height:94.12%;    /* 1 / 1.0625 */
+    font-size:112.5%;
+    line-height:88.89%;    /* 1 / 1.125 */
     letter-Spacing: 0.03125em;
-    font-weight:400;
-/*     color:#214E70; */
     color:#663E08;
 }
 
 .sc {
     font-variant: small-caps;
+    font-feature-settings: "smcp" on;
     font-size:112.5%;
     line-height:88.89%;    /* 1 / 1.125 */
 /*    font-weight:400;*/
@@ -157,6 +158,48 @@ h3 {
     font-weight:400;
 }
 
+table {
+/*     background: #FFFFFF; */
+    border-collapse: collapse;
+    margin-left:auto; 
+    margin-right:auto;
+    border-top: 2px solid #000; 
+    border-bottom: 2px solid #000; 
+    caption-side: bottom;
+}
+
+table caption {
+    padding-top: 0.875ex;
+    font-style: italic;
+    text-align: justify;
+}
+
+table caption::before {
+    counter-increment: tab; 
+    font-weight: bold;
+    content: 'Table ' counter(tab) ': ';
+}
+
+tr.head {
+    border-bottom: 1px solid #000;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+tr.sep {
+    border-top: 1px solid #ccc;    
+}
+
+th {
+/*     font-variant:small-caps; */
+}
+
+th, td {
+    padding-right:0.625em;
+    padding-left:0.625em;
+}
+
+
 /*Lists*/
 
 ol {
@@ -170,11 +213,11 @@ ol.examples {
     list-style-type: decimal;
 }
 
-ol.examples li {
+ol.examples li.ex {
     list-style: none;
 }
 
-ol.examples li::before {
+ol.examples li.ex::before {
     counter-increment: example; 
     content: "(" counter(example) ")";
     padding-right: 0.375em;
@@ -221,16 +264,17 @@ content: "\21B4";
 
 header a:link 
   {
-    color:#EFF3F6; 
-    border-bottom: 1px dotted #EFF3F6; 
+    color:#ADB9C2; 
+    border-bottom: 1px dotted #ADB9C2; 
     text-decoration:none;
-  }
+}
   
 header a:visited 
   {
-    color:#EFF3F6; 
-    border-bottom: 1px dotted #EFF3F6; 
-    text-decoration:none;  }
+    color:#ADB9C2; 
+    border-bottom: 1px dotted #ADB9C2; 
+    text-decoration:none;  
+}
   
 header a:hover
   {
@@ -251,7 +295,38 @@ li {
     margin-bottom: 0.5em;
 }
 
+/*Glosses*/
+/*Code based on answer at https://linguistics.stackexchange.com/questions/3/how-do-i-format-an-interlinear-gloss-for-html*/
 
-/*li:not(:last-child) {
-    margin-bottom: 0.5em;
-}*/
+ol.glossed { 
+    list-style: none;
+    display:inline-block;    
+    padding: 0em;
+    margin-left:-0.625em;    
+    margin-bottom: -0.625em;
+    vertical-align: top;
+}
+
+ol.word { 
+    list-style: none;
+    padding: 0em;
+    display: inline-block;   
+}
+
+ol.word li.source {
+    margin-right:-0.125em;
+    font-style:italic;    
+}
+
+
+ol.word li.gloss {
+    margin-right:-0.125em;
+    margin-top:-0.375em;
+/*     color: #214E70;     */
+}
+
+ol.trans {
+    list-style: none;    
+    padding: 0em;
+    margin-top:-0.375em;
+}

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Looking for ‘one’ in the BNC &ndash; Nicholas LaCara</title>
+    <link rel="stylesheet" type="text/css" href="../sidenote.css">
+    
+    <meta charset="UTF-8">
+    <meta name="keywords" content="British National Corpus, Natural Language Tool Kit, NLTK, anaphora, linguistics, corpus linguistics, NLP, English, anaphora resolution">
+    <meta name="author" content="Nicholas LaCara">
+</head>
+
+
+<header>
+    Nicholas LaCara : : Looking for <i>one</i> in the <span class='sc'>bnc</span> <span class='nav'><a href="../index.html">Back to blog index</a> | <a href="../../index.html">Back to website</a></span>
+</header>
+
+
+<body>
+
+    <h1>
+        Looking for <i>one</i> in the <span class='sc'>bnc</span> 
+    </h1>
+        Nicholas LaCara &ndash; February 2020 &ndash; Boston, <span class='sc'>ma</span>
+    <div>
+    <p class='abstract'>
+        I've been interested in the distribution of anaphoric <em>one</em> in English for a while. In this blog post, I discuss some of the recent corpus work I've been doing as I try to learn more about how it interacts with possessive structures, focusing on some searches I've done in the <span class="sc">bnc</span> using the <span class="sc">nltk</span> and some issues I've had to deal with while doing this work. This approach is new to me, so part of the goal here is to document the steps I took while learning how and the reasoning behind the decisions I made.
+    </p>
+
+<section id='S:Background'>
+    <h2>
+        Anaphoric <em>one</em>
+    </h2>
+
+    <p>
+        As a linguist, one of the phenomena I'm most interested in is English <span class='note'>In linguistics, <span class=term>anaphora</span> refers to phenomena where the meaning of some element or expression is determined by reference to some other element or expression. The element that determines the meaning of an anaphoric expression is usually referred to as the <span class='term'>antecedent</span>, even when they follow the anaphoric expressions that refer to them.</span>anaphoric <em>one</em>. <em>One</em> is used to refer back to a noun or noun phrase that is used elsewhere in a discourse. A simple example is given in (1), where the word <em>ones</em> refers back to <em>book</em>.
+    </p>
+    
+    <ol class='examples'>
+        <li class='ex'>
+            Mary bought a long book, and I bought three short <em>ones</em>.
+        </li>
+    </ol>
+    
+    <p>
+        Notice, here, that <em>ones</em> can't really a numeral (such as <em>two</em>, or <em>three</em>). It isn't possible to replace <em>one</em> with another numeral, so it really has to be something other than a numeral or number in this context.
+    </p>
+    
+    <p>
+        The use of a word like <em>one</em>, while not limited to English, is fairly unusual compared to what many other languages do in similar contexts. For example, in Spanish, instead of using a word like <em>one</em>, it is possible to leave the noun out entirely in a phenomenon known as <span class='term'>noun phrase ellipsis</span>, or <span class='sc'>npe</span>. In the Spanish example in (2), I've represented <span class='sc'>npe</span> with an underscore (_), which I'll also do elsewhere.
+    </p>
+    
+    <ol class='examples'>
+        <li class='ex'>
+            <ol class='glossed'>
+                <li>
+                    <ol class='word'>
+                        <li class='source'>María</li>
+                        <li class='gloss'>Maria</li>
+                    </ol>
+                    <ol class='word'>
+                        <li class='source'>compró</li>
+                        <li class='gloss'>bought</li>
+                    </ol>
+                    <ol class='word'>
+                        <li class='source'>un</li>
+                        <li class='gloss'>a</li>
+                    </ol>
+                    <ol class='word'>
+                        <li class='source'>libro</li>
+                        <li class='gloss'>book</li>
+                    </ol>
+                    <ol class='word'>
+                        <li class='source'>largo,</li>
+                        <li class='gloss'>long</li>
+                    </ol>
+                    <ol class='word'>
+                        <li class='source'>y</li>
+                        <li class='gloss'>and</li>
+                    </ol>
+                    <ol class='word'>
+                        <li class='source'>yo</li>
+                        <li class='gloss'>I</li>
+                    </ol>
+                    <ol class='word'>
+                        <li class='source'>compré</li>
+                        <li class='gloss'>bought</li>
+                    </ol>
+                    <ol class='word'>
+                        <li class='source'>tres</li>
+                        <li class='gloss'>three</li>
+                    </ol>
+                    <ol class='word'>
+                        <li class='source'>_</li>
+                        <li class='gloss'>_</li>
+                    </ol>
+                    <ol class='word'>
+                        <li class='source'>cortos.</li>
+                        <li class='gloss'>short</li>
+                    </ol>
+                    <ol class='trans'>
+                        <li>
+                            ‘Maria bought a long book, and I bought three short ones.’
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+        </li>
+    </ol>
+    
+    <p>
+        Even within English, <em>one</em> is not used everywhere. Like Spanish, English uses noun phrase ellipsis, but it uses it in different places from where <em>one</em> is typically used. One of those places is after possessives:
+    </p>
+    
+        <ol class='examples'>
+            <li class='ex'>
+                I didn't read Mary's book, but I read Sally's _.
+            </li>
+        </ol>
+
+    <p>
+        What interests me is that there is actually some variation with regard to cases like (3). As I just mentioned, usually <span class='sc'>npe</span> is used in places where <em>one</em> cannot be, and <em>vice-versa</em>. Now, as far as I am aware, all speakers accept (3) as grammatical. Consequently,<span class='note'>I personally find (4) to be ungrammatical.</span> it was very surprising to me to find that some speakers accept (4) as grammatical as well.<span class='note'>Here, the % symbol means that some but not all speakers find the sentence acceptable.</span>
+    </p>
+
+        <ol class='examples'>
+            <li class='ex'>
+                %I didn't read Mary's book, but I read Sally's one.
+            </li>
+        </ol>
+        
+    <p>
+        <span class='note'><a href='https://nlacara.github.io/papers/one_xe.pdf' class='doc' target='_blank'>I have some older work</a> arguing that ellipsis and <em>one</em> cannot be classified as the same sort of anaphoric phenomenon. The project described here fits into a more recent project where I try to better understand the distribution of the two phenomena. For some of that work, <a href='https://nlacara.github.io/handaus/LaCaraDGfS-2018-ones.pdf' target='_blank' class='doc'>see this handout</a>.</span>Since I'm interested in the factors that determine when <em>one</em> is used instead of <span class='sc'>npe</span>, I decided to take a look through some corpora to see if I could gain any insights into when <em>one</em> is used with possessives. Part of the difficulty in doing this, though, is that the word <em>one</em> is used in a number of different ways. I'm interested in the anaphoric use I showed in (1), which generally stands in for a noun in a broader noun phrase, but <em>one</em> can also be used as a numeral (<em>I bought the one good book</em>), as an indefinite pronoun replacing an entire noun phrase (<em>I didn't buy a Dickens novel because I didn't want one.</em>) and as a so-called impersonal pronoun (<em>One must always respect one's elders</em>). After possessives, the distribution of these is more limited in general (the impersonal pronoun and the indefinite pronoun should not appear in this context), but it is possible for the numeral <em>one</em> to appear immediately after possessives. Furthermore, the numeral <em>one</em> does appear to allow for ellipsis:
+    </p>
+    
+    <ol class='examples'>
+        <li class=ex>
+            Sally bought two books, but I only bought one _.
+        </li>
+    </ol>
+    
+    <p>
+        Since I want to know more about these elements, I need (a lot) more data. In what follows, I detail some ongoing corpus work where I look for how <em>one</em> behaves in possessives in English. Right now, I'm using the <a href="" target="_blank" class="ext">British National Corpus</a> (<span class="sc">bnc</span>). The <span class="sc">bnc</span> is tagged, which is helpful, but the tags are not sufficiently detailed for the distributional questions I'm interested in, and the texts were tagged automatically, so I am processing some of the data manually, retagging the word <em>one</em> when it occurs after possessive <em>-'s</em> and posessive determiners. Before I talk about that, though, I want to discuss why I chose the <span class="sc">bnc</span> and what the distribution of <em>one</em> looks like in that corpus.
+    </p>
+</section>
+    
+<section id="S:WhyBNC">
+<h2>
+    Why the <span class="sc">bnc</span>?
+</h2>
+    
+    <p>
+        <span class='sc'>tl;dr</span>: The main reasons for using the <span class='sc'>bnc</span> are that it's big, it's free, it works with the <span class="sc">nltk</span>, and previous work has also utilized it.
+    </p>
+    
+    <p>
+        I'm using the <a href="https://www.nltk.org/" target="_blank" class="ext">Natural Language Tool Kit</a> (or <span class="sc">nltk</span>) to do the search and started off using the <a href="https://en.wikipedia.org/wiki/Brown_Corpus" target="_blank" class="ext">Brown Corpus</a>. Unfortunately, the Brown Corpus wasn't giving me the results I needed (there were <em>no</em> tokens of <em>one</em> following possessives in Brown), so figured I needed a bigger corpus.
+    </p>
+
+    <p>
+        <span class='note'>I was interested in using the <a href="https://www.english-corpora.org/coca/">Corpus of Contemporary American English</a> (<span class='sc'>coca</span>) since I'm American, but <span class='sc'>coca</span> cannot be downloaded for free and is not set up for use with the <span class='sc'>nltk</span>, as far as I know.</span>I chose the <span class="sc">bnc</span> for a few reasons. First, it can be set up to work with the <span class='sc'>nltk</span>, which meant I could use it in a workflow that I'm comfortable with. Second, I was aware that previous corpus work on <em>one</em> had used the <span class="sc">bnc</span> (<a href="#Cite:Payne">Payne et al. 2013</a>), and so it was a good jumping-off place for me. Furthermore, it is much larger than the Brown Corpus. While the Brown Corpus totals some one million words, the <span class="sc">bnc</span> is a one-hundred-million-word corpus. Additionally, the content of the <span class="sc">bnc</span> is much more recent, having been compiled in the late 20th century rather than the 1960s and 1970s.
+    </p>
+    
+    <p>
+        Finally, one of the main advantages of using the <span class="sc">bnc</span> is that it is tagged, which helps with some aspects of the searches I want to carry out. However, the tagging of the <span class="sc">bnc</span> is not without its drawbacks. One of the main issues here is that, owing to its huge size, the <span class="sc">bnc</span> was automatically tagged and has not been checked by humans. The tags on <em>one</em>, in particular, are not very reliable. For example, the tag PNI (indefinite pronoun) is used both for anaphoric <em>one</em> as well as for impersonal <em>one</em>, so using the tags in the corpus as-is would not allow us to get a fully accurate picture of how anaphoric <em>one</em> is distributed.
+    </p>
+    
+    <p>
+        However, the tags in the corpus do allow for a general picture to the distribution of numeral <em>one</em> and can help us find clear cases where anaphoric <em>one</em> follows possessives.
+    </p>
+</section>
+    
+<section id='S:Overview'>
+<h2>
+    The starting place: An overview of <i>one</i> in the <span class="sc">bnc</span>
+</h2>
+
+<h3>
+    Anaphoric <i>one</i> and possessives
+</h3>
+
+    <p>
+        As an initial search, I looked for tokens of <em>one</em> tagged <em>PNI</em> (indefinite pronoun) where the preceding token was a possessive (including the possessive <em>-'s</em> and possessive determiners (<em>my</em>, <em>your</em>, <em>her</em>, and others; tags POS or DPS), and collected sentences containing such tokens. This yielded 49 results. Since the results were few, I then read through them to see if there were any cases anaphoric <em>one</em> immediately following a possessive.
+    </p>
+
+    <p>
+        There are, in fact, several clear cases of anaphoric <em>one</em> immediately following possessives. The following examples, at least to my eye, cannot be anything other than tokens of anaphoric <em>one</em> and not the numeral:
+    </p>
+    
+        <ol class='examples'>
+            <li class='ex'>
+                <span class='note'>(KSU 417)</span>That car &lt;pause&gt; better condition than what my o-- , my <em>one</em> was.
+            </li>
+            <li class='ex'>
+                <span class='note'>(KPG 3747)</span>[In a conversation about spiders &ndash;NL] They were gonna, my Dad said yeah well my <em>one</em>, no, my Dad's <em>one</em> was called Rhino and the other one was called Elephant and their <em>one</em> died.
+            </li>
+        </ol>
+    
+    <p id='P:Mistag'>
+        However, there are also some examples that are almost certainly mis-tagged. In the following examples, <em>one</em> is most likely a numeral, contrasting the number of serves (three serves to one serve) or hands (both versus one); yet, both tokens of <em>one</em> are tagged PNI (indefinite pronoun) rather than CRD (cardnial numeral):
+    </p>
+    
+    <ol class='examples'>
+        <li class='ex'>
+            <span class='note'>(B03 2629)</span>They were unbeaten all afternoon, despite six of their opponents having three serves, to their <em>one</em>! 
+        </li>
+        <li class='ex'>
+            <span class='note'>(FPH 1551)</span>Both his hands now enclosing my <em>one</em>.
+        </li>
+    </ol>
+
+    <p>
+        <span class='note'>The cases I have found so far look as though they come from spontaneous speech and not written texts.</span>So there <em>are</em> tokens of anaphoric <em>one</em> following possessors in this corpus, confirming that this does happen (even if I personally consider these cases less than acceptable). However, the tags, as I discuss immediately below, are not particularly reliable.
+    </p>
+<h3>
+    Distribution of tags
+</h3>
+    <p>
+        To get an idea of how <em>one</em> behaves in the corpus more broadly, I ran another search to see (i) how tokens of <em>one</em> are tagged throughout the corpus and (ii) how tokens of <em>one</em> are tagged immediately after possessive elements. To do this, I simply searched for all tokens of <em>one</em> or <em>ones</em> in the corpus and kept a tally of how each token was tagged. Furthermore, if the particular token of <em>one</em> or <em>ones</em> followed a word tagged POS or DPS, I kept a separate tally. Overall, there are 306,139 tokens of <em>one</em> or <em>ones</em> in the corpus, of which 579 occur immediately after an element tagged POS or DPS. The results of this search are in the table below.
+    </p>
+    
+    <p>
+        A couple of things to note about the tags: The automatic tagging system used by the <span class='sc'>bnc</span> uses the C5 tag set. The relevant tags for the discussion here are PNI (indefinite pronoun), CRD (cardinal numeral), and NN2 (plural noun). The tagger assigns so-called ambiguous tags when the automatic tagger isn't confident of the tag. In the results here, these tags are PNI-CRD and CRD-PNI; the more likely tag is the first of the two. 
+    </p>
+    
+    <table>
+        <tr>
+            <th>
+            </th>
+            <th colspan=2 style='border-bottom: 1px solid #000; border-bottom-width:'>
+                All tokens
+            </th>
+            <th colspan=2 style='border-bottom: 1px solid #000'>
+                After Possessives
+            </th>
+
+
+        </tr>
+        <tr class=head>
+            <th>
+                Tag
+            </th>
+            <th>
+                Number
+            </th>
+            <th>
+                Percent
+            </th>
+            <th>
+                Number
+            </th>
+            <th>
+                Percent
+            </th>
+
+        </tr>
+        <tr>
+            <td>
+                PNI
+            </td>
+            <td>
+                78525
+            </td>
+            <td>
+                25.65%
+            </td>
+            <td>
+                49
+            </td>
+            <td>
+                8.46%
+            </td>
+        </tr>
+        <tr>
+            <td>
+                PNI-CRD
+            </td>
+            <td>
+                21966
+            </td>
+            <td>
+                7.18%
+            </td>
+            <td>
+                54
+            </td>
+            <td>
+                9.33%
+            </td>
+        </tr>
+        <tr class="sep">
+            <td>
+                CRD
+            </td>
+            <td>
+                189299
+            </td>
+            <td>
+                61.83%
+            </td>
+            <td>
+                454
+            </td>
+            <td>
+                78.41%
+            </td>
+        </tr>
+        <tr>
+            <td>
+                CRD-PNI
+            </td>
+            <td>
+                4814
+            </td>
+            <td>
+                1.57%
+            </td>
+            <td>
+                4
+            </td>
+            <td>
+                0.69%
+            </td>
+        </tr>
+        <tr class="sep">
+            <td>
+                NN2
+            </td>
+            <td>
+                11503
+            </td>
+            <td>
+                3.76%
+            </td>
+            <td>
+                18
+            </td>
+            <td>
+                3.11%
+            </td>
+        </tr>
+        <tr>
+            <td>
+                All other tags
+            </td>
+            <td>
+                32
+            </td>
+            <td>
+                0.01%
+            </td>
+            <td>
+                0
+            </td>
+            <td>
+                0%
+            </td>
+        </tr>
+        <tr class='sep'>
+            <td>
+                Total
+            </td>
+            <td>
+                306139
+            </td>
+            <td>
+            </td>
+            <td>
+                579
+            </td>
+            <td>
+            </td>
+        </tr>
+        <caption>
+            Counts of the different tags used for tokens of <em>one</em> and <em>ones</em> in the <span class='sc'>bnc</span>, throughout the corpus and specifically after possessives (tags DPS and POS).
+        </caption>
+    </table>
+    
+    <p>
+        The first thing to see is that the frequency of tokens tagged PNI and PNI-CRD is much lower after possessives than in the corpus as a whole. All else being equal, one might expect the frequency of tags after possessives to match the frequency of tags elsewhere in the corpus, but this doesn't seem to be true. Taken together, PNI and PNI-CRD make up a total of 32.83% of tokens in the whole corpus, but only 17.79% of tokens when immediately following a possessive. Since anaphoric <em>one</em> is tagged PNI in the corpus, this might suggest that it is, in fact, less common after possessives. However, as I mention above, impersonal <em>one</em> is also tagged PNI, and since this element, as a pronoun, cannot occur after a possessive under normal circumstances, this could also lead to a lower number of PNI tags after possessives.
+    </p>
+    
+    <p>
+        A further concern is the ambiguous tag PNI-CRD. As the <a href="http://www.natcorp.ox.ac.uk/docs/URG/posguide.html#m4one" class=ext target="_blank">corpus documentation points out</a>, specifically in reference to tagging tokens of <em>one</em>, ‘the reliability of the ambiguity tag PNI-CRD (in which the pronoun is rated more likely) is somewhat low’. Overall, it appears there is just 3-in-8 chance that PNI tag is the right one for elements tagged PNI-CRD. However, this extends to all tokens tagged PNI, not just <em>one</em>.
+    </p>
+    
+    <p>
+        There are a few other things worth pointing out here (as discussed <a href='#P:Mistag'>above</a>, the fact that some tokens tagged PNI should probably be CRD), but the main take away is that the information provided by the tags is simply not reliable enough as-is to be make any clear conclusions about the distribution of anaphoric <em>one</em> (or at least, it is not robust enough for me to be comfortable enough making any empirical claims based on these results). Because of this, I've decided to go through the examples and re-tag them to get a better picture of what the distribution looks like.
+    </p>
+    
+</section>
+
+<section id='S:Re-tagging'>
+<h2>
+    Re-tagging <i>one</i>
+</h2>
+
+    <p>
+        So to get better, more accurate data about the distribution of anaphoric <em>one</em> in the corpus, I've decided to go back and re-tag tokens of <em>one</em> with more descriptive tags that better let me see the phenomena I'm interested in. This seems appropriate to me since, as mentioned above, the <span class='sc'>bnc</span> tags have undergone minimal post-editing, <span class='note'><a href="http://www.natcorp.ox.ac.uk/docs/URG/posguide.html" class='ext' target="_blank">According to the reference guide</a>, ‘some manual tagging was undertaken to correct some particularly blatant errors, mainly foreign or classical words embedded in English text’.</span> and the fact that there are errors and other inaccuracies in the tags for the tokens I'm interested in. What needs to be done at this point is: (a) decide what information needs to be represented in the new tags, (b) establish some criteria for how to assign those tags, (c) develop a way of writing those tags to the data, and (d) coming up with a representative sample to compare the possessive data to and re-tagging that.
+    </p>
+
+<h3>
+    How to tag the data?
+</h3>
+    
+    <p>
+        First, I need a tag set that adequately distinguishes differences in the types of <em>one</em> that could feasibly be found in the corpus so I can get a more accurate view of what each token of <em>one</em> is. This will be a custom tag set just for looking at the distribution of <em>one</em>, and it will mix part-of-speech, morphological, and semantic information (since there are two different pronouns <em>one</em> that ought to be distinguished). The tags I'm envisioning right now are:
+    </p>
+    
+    <ol>
+        <li>
+            1A1 - Singular anaphoric <em>one</em> that stands in for a noun.
+        </li>
+        <li>
+            1A2 - Plural anaphoric <em>one</em> that stands in for a noun.
+        </li>
+        <li>
+            1PA - Pronominal anaphoric <em>one</em> that stands in for a full DP.
+        </li>
+        <li>
+            1PI - Impersonal pronoun <em>one</em>
+        </li>
+        <li>
+            1CN - Cardinal numeral <em>one</em>
+        </li>
+        <li>
+            1UA - Unclassified token of <em>one</em> (ambiguous in context)
+        </li>
+        <li>
+            1UC - Unclassified token of <em>one</em> (not enough context)
+        </li>
+        <li>
+            1UU - Unclassified token of <em>one</em> (context unclear)
+        </li>
+    </ol>
+    
+    <p>
+        This is probably a more fine-grained system than I need, given that after a possessive only anaphoric and numeral <em>one</em> are expected to appear in any large number, but it is better to have more detail in this instance than not enough.
+    </p>
+    
+    <p>
+        I'm also considering a tag for <em>one</em> when it appears a title. There are several sentences I have found where <em>one</em> is the first word of a title that immediately follows a possessive. For example, in (10), <em>one</em> (correctly tagged CRD) follows the possessive <em>Simpson's</em>, but <em>one</em> is part of the title of Simpson's work, not part of a possessive noun phrase.
+    </p>
+    
+    <ol class='examples'>
+        <li class='ex'>
+            <span class='note'>(A06 65)</span>Of the British playwrights, Pinter is often thought to be on the edges of ‘absurdism’ and you could also read N.F. Simpson's <i>One Way Pendulum</i> and <i>Cresta Run</i>.
+        </li>
+    </ol>
+
+    
+    <p>
+        The other thing that is necessary are some criteria by which to assign these tags. Although I will be tagging, in part, based on my personal intuition as a native English speaker, I've been trying to find a few criteria that distinguish between the various varieties of <em>one</em>, especially in cases where the correct tag may not be immediately clear:
+    </p>
+    
+    <ol>
+        <li>
+            <em>Is it plural?</em> <br>
+            If <em>one</em> is plural <em>ones</em>, then it is anaphoric <em>one</em> (1A2). <span class='note'>Criteria a. and b. are also used by <a href="#Cite:Payne">Payne et al. (2013)</a>.</span>
+        </li>
+        <li>
+            <em>Does <em>one</em> appear before an adjective?</em> <br>
+            Anaphoric <em>one</em> does not appear before an adjectives, so any token of <em>one</em> before an adjective should be counted as a numeral (1CN).
+        </li>
+        <li>
+            <em>Does the antecedent contain a numeral?</em> <br>
+            If there is a numeral in the antecedent with which <em>one</em> appears to contrast, then <em>one</em> is most likely a numeral (1CN). After an adjective, is most likely anaphoric one (1A1 or 1A2).
+        </li>
+        <li>
+            <em>Does the token of <em>one</em> stand on its own?</em> <br>
+            If <em>one</em> occurs without determiners, modifying adjectives, or other adjuncts, it is usually not anaphoric <em>one</em> (1A1 or 1A2), but one of the pronominal variants (1PA or 1PI).
+        </li>
+    </ol>
+    
+    
+<h3>
+    The data
+</h3>
+
+    <p>
+        As discussed here, I've already extracted from the corpus the sentences containing tokens of <em>one</em> that I'm interested in (tokens following possessives). Along with these sentences, I've also extracted the immediately preceding sentence since anaphoric <em>one</em> can refer to nouns in previous utterances and it is not always possible to tell if a token of <em>one</em> is a numeral or an anaphoric case without this additional context. <span class='note'>After looking through some of the examples of spontaneous speech, however, I'm no longer sure one sentence will be enough. More context will probably be necessary for these cases, and I need to think about how I want to deal with that. Fortunately, the script I've developed for doing this (described below) is easy enough to adapt to get a greater number of previous sentences.</span>I'm hoping one sentence of previous material will be enough to make a determination, but I can always go back and extract more data if necessary.
+    </p>
+    
+    <p>
+        I'll also need to sample the corpus to get sentences to compare these results to. This is an area that is totally new to me (which is part of why I'm working on this project!), so it's probably one of the last things I will do. Once I get this sample, I will work through re-tagging instances of one in it, too, so that distributional information about <em>one</em> can be compared to those tokens appearing after possessives.
+    </p>
+    
+<h3>
+    The process
+</h3>
+
+    <p>
+        The main goal is to create new tagged corpus data I can further manipulate with the <span class='sc'>nltk</span>. I've written a Python script that takes the tagged data I've extracted from the corpus, finds individual tokens of <em>one</em> and asks me how I'd like to tag it. After it presents each token of <em>one</em> found in the data, it writes the new tags to those tokens and, when I quit the script, writes all of the re-tagged sentences to a text file using <span class='sc'>json</span>. The script uses the saved data in the <span class='sc'>json</span> file to figure out how many sentences I've tagged so far so that I can start re-tagging from where I left off. I'm hoping this will speed up the task of re-tagging hundreds of tokens (fortunately I have a lot of free time right now).
+    </p>
+    
+</section>
+
+<section id='S:Conc'>
+
+    <p>
+        That's all I have for now. Once I have some preliminary results, I'll write about them on this blog and let you know how it went!
+    </p>
+
+</section>
+
+</body>
+
+<footer>
+
+<h2>
+    References
+</h2>
+
+<ul>
+    <li id='Cite:Payne'>
+        Payne, J., Pullum, G.K., Scholz, B.C., &amp; Berlage, E. (2013). Anaphoric one and its implications. <i>Language</i> 89(4), 794-829. <a href="http://doi.org/10.1353/lan.2013.0071" target="_blank" class="ext">doi:10.1353/lan.2013.0071</a>.
+    </li>
+</ul>
+
+</footer>
