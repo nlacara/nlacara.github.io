@@ -28,7 +28,7 @@ header {
     left: 0;
     width: 100%;
     padding-left: 0.5em;
-    padding-top: 1ex;
+    padding-top: 1.5ex;
 /*     padding-bottom: 4px; */
     background: #214E70;
     border-width: 1em;
@@ -135,6 +135,12 @@ hr {
 
 em {
     color: #214E70;
+}
+
+/*Sections*/
+
+section {
+    scroll-margin-top: 7ex;
 }
 
 /*Headers*/
