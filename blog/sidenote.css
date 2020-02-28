@@ -10,7 +10,6 @@ body {
     background: #EFF3F6;
     margin-left:1.5em;
     counter-reset: example;
-/*     counter-reset: tab; */
     padding-top: 4ex;
 }
 
@@ -19,6 +18,8 @@ div {
     width: 68.75%;
     max-width: 50em;
     min-width: 30em;
+/*     margin-left: auto; */
+/*     margin-right: auto; */
 }
 
 header {
@@ -29,7 +30,6 @@ header {
     width: 100%;
     padding-left: 0.5em;
     padding-top: 1.5ex;
-/*     padding-bottom: 4px; */
     background: #214E70;
     border-width: 1em;
     border-color: #092942;
@@ -41,6 +41,14 @@ header .nav {
     position: fixed;
     right: 0;
     padding-right: 1em;
+}
+
+footer {
+    /*position: fixed;*/
+    bottom: 0;
+    right: 0;
+    padding-bottom: 1.5ex;
+    padding-right: 0.5em;
 }
 
 /* Sidenote code */
@@ -55,10 +63,15 @@ span.note {
     font-weight:400;
     text-align: left;
     padding-bottom: 1ex;
+    scroll-margin-top: 7ex; /*To avoid overlap with header*/
 }
 
 span.check {
     color: #FF0000;
+}
+
+p {
+    scroll-margin-top: 7ex; /*To avoid overlap with header*/
 }
 
 /* Formatting stuff */
@@ -134,13 +147,17 @@ hr {
 }
 
 em {
+/*     color: #214E70; */
+}
+
+em.ex {
     color: #214E70;
 }
 
 /*Sections*/
 
 section {
-    scroll-margin-top: 7ex;
+    scroll-margin-top: 7ex; /*To avoid overlap with header*/
 }
 
 /*Headers*/

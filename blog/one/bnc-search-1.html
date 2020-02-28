@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Looking for ‘one’ in the BNC -- Part II &ndash; Nicholas LaCara</title>
+    <link rel="stylesheet" type="text/css" href="../sidenote.css">
+    
+    <meta charset="UTF-8">
+    <meta name="keywords" content="British National Corpus, Natural Language Tool Kit, NLTK, anaphora, linguistics, corpus linguistics, NLP, English, anaphora resolution">
+    <meta name="author" content="Nicholas LaCara">
+    <link rel="icon" type="image/png" href="../../favicon.png">  
+
+</head>
+
+
+<header>
+    Nicholas LaCara : : Looking for <i>one</i> in the <span class='sc'>bnc</span> &ndash; Part II<span class='nav'><a href="../index.html">Back to blog index</a> | <a href="../../index.html">Back to website</a></span>
+</header>
+
+
+<body>
+
+    <h1>
+        Looking for <i>one</i> in the <span class='sc'>bnc</span> &ndash; Part II
+    </h1>
+        Nicholas LaCara &ndash; February 2020 &ndash; Boston, <span class='sc'>ma</span>
+    <div>
+    <p class='abstract'>
+        This is an update on some corpus work I've been doing on anaphoric <em class=ex>one</em>. To read up on the background, <a href="./bnc-search.html">see my previous post</a>!
+    </p>
+
+<section id='S:Background'>
+    
+    <h2>
+        Updates
+    </h2>
+    
+        <p>
+            So at this point I've worked through retagging the examples I initially collected. I can definitely say I've learned a lot by doing this. I worried in my last post that the tag set I thought up would be too detailed, but I encountered a number of issues I didn't anticipate or think about when I actually sat down to do the tagging. Given that things didn't go quite how I anticipated, I'll need to revise the tag set a bit and go through the data again, but now that I have a better sense of what I'm doing it shouldn't take so long.
+        </p>
+        
+        
+    <h3>
+        Numeral <em>one</em>
+    </h3>
+        
+        <p>
+            I did end up collapsing two of the ambiguous tags I had thought about using: 1UA (ambiguous in context) and 1UC (not enough context) since I couldn't even remember what distinction I was trying to capture there. I added a new token, though, for tokens of <em class='ex'>one</em> that occurred at the beginning of a title or name (which happened around twenty times after a possessive).
+        </p>
+        
+        <p>
+            There were several cases, though, mostly having to do with uses of cardinal <em class='ex'>one</em>, that I don't think my original tag set did a good job of capturing. Most notably, many tokens of <em class='ex'>one</em> occur in contexts where it does quantify over the noun phrase but is instead part of a compound or else part of a complex cardinal or ordinal number. Below I give some examples of the cases I encountered.
+        </p>
+        
+        <p>
+            Of the 589 apparent<span class='note'>As I discuss <a href="#S:Mistagging" class='int'>below</a>, some tokens of <em class='ex'>it's</em> and <em class='ex'>you're</em> are mis-tagged as possessives.</span> tokens of <em class='ex'>one</em> following a possessive, I tagged 440 as the cardinal numeral, nearly 75%. However, despite this technically being the right tag for many of these tokens, I worry that they do not accurately reflect the relation between possessives and <em class='ex'>one</em>. <span class='note'>For what it's worth, I have found very few tokens of <sc>npe</sc> following <em class='ex'>one</em> after a possessive. I'm thinking of some future corpus studies investigating this.</span>When it comes to numeral <em class=ex>one</em>, I'm particularly interested in cases where it either quantifies over a noun (phrase), as in (1) or else when it is stranded by noun phrase ellipsis, as in (2):
+        </p>
+        
+        <ol class='examples'>
+            <li class='ex'>
+                <span class='note'>CAB 581</span>He pushed at the gate and after a struggle it creaked and groaned open on <em class='ex'>its one rusty hinge</em>.
+            </li>
+            <li class='ex'>
+                <span class='note'>B03 2629</span>They were unbeaten all afternoon, despite six of their opponents having three serves, to <em class='ex'>their one</em>!
+            </li>
+        </ol>
+        
+        <p>
+            However, many tokens of numeral <em class=ex>one</em> occur in contexts where they do not do this. Several of these tokens were in numeral&ndash;noun compounds, such as <em class='ex'>one-point rise</em> and  <em class='ex'>one-pound coin</em> below (the corpus data does not include the dash):
+        </p>
+            
+        <ol class='examples'>
+            <li class='ex'>
+                <span class='note'>A37 56</span>STERLING failed to make further headway yesterday following <em class='ex'>Thursday's one point rise</em> in base rates
+            </li>
+            
+            <li class='ex'>
+                <span class='note'>AAV 1027</span>I stand in the queue for one of the new-fangled ticket machines clutching <em class='ex'>my one pound coin</em> [&hellip;]
+            </li>
+        </ol>
+        
+        <p>
+            Other places numeral <em class='ex'>one</em> appears include as a component of cardinal and ordinal numbers, such as <em class='ex'>one hundred thousandth</em>, and as part of modifiers such as <em class='ex'>one day</em>:
+        </p>
+        
+            <ol class='examples'>
+                <li class='ex'>
+                    <span class='note'>CBW 616</span>It is to welcome its <em class='ex'>one hundred thousandth</em> member to the fold [&hellip;]
+                </li>
+                <li class='ex'>
+                    <span class='note'>BNP 250</span>Home The Lynce, a small house in the grounds of Blenheim Palace, which will be Jamie's <em class='ex'>one day</em>.
+                </li>
+            </ol>
+        
+        <p>
+            Also, as mentioned last time, there were a number of tokens of <em class='ex'>one</em> that were the first word in a title (<em>One Hundred Years of Solitude</em> by Gabriel García Márquez appeared several times).
+        </p>
+        
+        <ol class='examples'>
+            <li class='ex'>
+                <span class='note'>AAF 523</span>[&hellip;] something of the flavour of this part of Panama can be gleaned from Garcia Marquez's One Hundred Years Of Solitude [&hellip;]
+            </li>
+        </ol>
+        
+        <p>
+            These tokens of <em class='ex'>one</em> are all, properly speaking, cardinal numeral <em class='ex'>one</em>, but from a syntactic perspective, they don't directly tell us much about the relation of <em class=ex>one</em> to possessives. They are part of syntatically distinct units &ndash; compounds, titles, and sentential modifiers &ndash; that don't interact with the structure of a noun phrase the way a simple numeral <em class='ex'>one</em> does.
+        </p>
+        
+        <p>
+            So as I refine my tagging going forward, I'm revising my tag set to take account of these differences. I suspect that this is overkill, but since I'm interested in patterns deeper than pure word order I'd like to be able to at least look at these distinctions in a more detailed way.
+        </p>
+</section>
+
+<section id='S:Mistagging'>
+
+    <h2>
+        Mis-tags in the corpus
+    </h2>
+    
+        <p>
+            Somewhat surprisingly, the automatic tagging in the corpus occasionally mistags <em class='ex'>it's</em> as possessive. For example, the substring <em class='ex'>it's one thing</em> in the example below is not tagged as if it means ‘it is one thing&hellip;’ but rather as ‘its one thing’:
+        </p>
+        
+        <ol class='examples'>
+            <li class='ex'>
+                <span class='note'>CEN 2250</span>It's one thing Keith finds so frightening &ndash; an awful responsibility.
+            </li>
+        </ol>
+        
+        <p>
+            This is actually pretty easy to take care of, and I've already modified my re-tagging script to allow me to change the tag of a preceding element to address the handful of cases like this and get more accurate counts.
+        </p>
+        
+        <p>
+            More troubling is that some cases of actual possessives appear to be mis-tagged as the contracted from of <em class='ex'>is</em>. In reading some of the contexts for the target sentence, I also came across tokens of possessive <em class='ex'>-'s</em> that must have been mis-tagged VBZ (3rd person singular present of <em class='ex'>be</em>). As an example:
+        </p>
+        
+        <ol class='examples'>
+            <li class='ex'>
+                <ol class='glossed'>
+                    <li>
+                        <ol class='word'>
+                            <li class='source'>well</li>
+                            <li class='gloss'>AJ0</li>
+                        </ol>
+                        <ol class='word'>
+                            <li class='source'>Angie</li>
+                            <li class='gloss'>NP0-NN1</li>
+                        </ol>
+                        <ol class='word'>
+                            <li class='source'>'s</li>
+                            <li class='gloss'>VBZ</li>
+                        </ol>
+                        <ol class='word'>
+                            <li class='source'>one</li>
+                            <li class='gloss'>PNI</li>
+                        </ol>
+                        <ol class='word'>
+                            <li class='source'>'s</li>
+                            <li class='gloss'>VBZ</li>
+                        </ol>
+                        <ol class='word'>
+                            <li class='source'>like</li>
+                            <li class='gloss'>AV0</li>
+                        </ol>
+                        <ol class='word'>
+                            <li class='source'>boiling</li>
+                            <li class='gloss'>AJ0-VVG</li>
+                        </ol>
+                        <ol class='word'>
+                            <li class='source'>hot</li>
+                            <li class='gloss'>AJ0</li>
+                        </ol>
+                        <ol class='trans'>
+                            ‘[&hellip;]well Angie's one's like boiling hot’
+                        </ol>
+                    </li>
+                    
+                </ol><span class='note'>KP5 300</span>
+
+            </li>
+        </ol>
+        
+        <p>
+            This example was not caught by my initial search, and when I searched for it I discovered that the token of <em class='ex'>'s</em> following <em class='ex'>Angie</em> is mis-tagged as VBZ rather than POS. Since this <em>is</em> a clear case of anaphoric <em class=ex>one</em> immediately following a possessive (<em class='ex'>one</em> refers to radiators in context), this is exactly the kind of case I am interested in and so I would like for it to be included in the sample. At the moment, I will probably need to more carefully comb the data looking for these sorts of tokens.
+        </p>
+        
+</section>
+
+<section>
+
+    <h2>
+        <span class='sc'>tl;dr</span>: This has yielded results
+    </h2>
+    
+        <p>
+            The upshot of all of this is that I came away with some real examples of anaphoric <em class=ex>one</em> in use after possessives:
+        </p>
+        
+        <ol class='examples'>
+            <li class='ex'>
+                <ol>
+                    <li>
+                        <span class='note'></span>It's okay. I haven't got any more anyway. My present was better actually.
+                    </li>
+                    <li>
+                        <span class='note'></span>No, my one was.
+                    </li>
+                </ol>
+            </li>
+            <li class='ex'>
+                <ol>
+                    <li>
+                        <span class='note'></span>I had a cardigan on.
+                    </li>
+                    <li>
+                        <span class='note'></span>What cardigan?
+                    </li>
+                    <li>
+                        <span class='note'></span>Your one.
+                    </li>
+                </ol>
+            
+            </li>
+            <li class='ex'>
+                she changed the film cos sixteen pictures of it were my ones cos I hadn't used the film
+            </li>
+        </ol>
+
+        <p>
+            So there has been some pay-off! But I'm looking forward to doing some more re-tagging to address the issues I discuss above and get clearer results. Check back soon.
+        </p>
+</section>
+
+</body>
+
