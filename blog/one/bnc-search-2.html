@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Looking for ‘one’ in the BNC -- Part III &ndash; Nicholas LaCara</title>
+    <link rel="stylesheet" type="text/css" href="../sidenote.css">
+    
+    <meta charset="UTF-8">
+    <meta name="keywords" content="British National Corpus, Natural Language Tool Kit, NLTK, anaphora, linguistics, corpus linguistics, NLP, English, anaphora resolution">
+    <meta name="author" content="Nicholas LaCara">
+    <link rel="icon" type="image/png" href="../../favicon.png">  
+
+</head>
+
+
+<header>
+    Nicholas LaCara : : Looking for <i>one</i> in the <span class='sc'>bnc</span> &ndash; Part III<span class='nav'><a href="../index.html">Back to blog index</a> | <a href="../../index.html">Back to website</a></span>
+</header>
+
+
+<body>
+
+<div class='container'>
+    <h1>
+        Looking for <i>one</i> in the <span class='sc'>bnc</span> &ndash; Part III
+    </h1>
+        Nicholas LaCara &ndash; March 2020 &ndash; Boston, <span class='sc'>ma</span>
+    <div>
+    <p class='abstract'>
+        This is the final update on some corpus work I've been doing on anaphoric <em class=ex>one</em>. To read up on the background, <a href="./bnc-search.html">see my first post on the topic</a> and <a href="./bnc-search.html">the more recent interim update</a>.
+    </p>
+    
+<section id='S:Intro'>
+
+    <h2>
+        Following up
+    </h2>
+
+    <p>
+        So I've more or less completed this study. It took me a little while to get to finishing the last steps (getting a sample of the corpus, re-tagging the relevant tokens, and comparing the results) since I had to focus some of my attention on more pressing things at the beginning of the month and then spent most of the last week distracted by the <span class=sc>covid</span>-19 pandemic.
+    </p>
+    
+    <p>
+        But the results are in, and as best as I can tell the frequency of anaphoric <em class='ex'>one</em> following possessives is <em>no different</em> than it is elsewhere, at least in the British National Corpus (<span class='sc'>bnc</span>). Given that this result clashes entirely with my intuitions, I am actually quite surprised with this result.
+    </p>
+
+    <p>
+        In what follows, I'll talk a bit about the hypothesis I'm testing, how I got the sample I used to test that hypothesis, the results of the comparison, and a bit about what is going on.
+    </p>
+    
+    
+</section>
+
+<section id='S:Hypothesis'>
+
+    <h2>
+        The hypothesis
+    </h2>
+
+    <p>
+        <a href="./bnc-search.html">In my last post</a>, I wrote about how I had collected tokens of the word <em class='ex'>one</em> when it followed possessive elements (such as <em class='ex'>-'s</em>, <em class='ex'>her</em>, <em class='ex'>our</em>, and so on). <span class='note'>All of the scripts I wrote for this project are now <a href='https://github.com/nlacara/one_retagger' class='ext' target="_blank">available on my GitHub</a>, cleaned up and ready for public (consumption|scrutiny).</span>Using <a href='https://github.com/nlacara/one_retagger' class='ext' target="_blank">some Python scripts that I wrote</a>, I re-tagged the data to more precisely describe each token of <em class='ex'>one</em>. I discovered my first result: that contrary to my intuition (and the intuitions of many other native English speakers), anaphoric <em class='ex'>one</em> can unambiguously occur immediately after possessive elements in English.
+    </p>
+    
+    <p>
+        Of course, <span class='note'>One of the goals of the project, in fact, was to find clear cases so that I would be able to study them in the future. In that sense, the project has been a success.</span>I wanted to know more than just <em>whether</em> it is possible for anaphoric <em class='ex'>one</em> to occur immediately after a possessive element. Intuitive judgments about such cases suggest that they should not occur, but in reality we have known for some time that intuitive judgments about grammaticality are gradient (see, for example, <a href="#Cite:Chomsky1965">Chomsky 1965: 77ff</a>), and that people sometimes produce sentences that are judged to be ungrammatical. Furthermore, as I've noted before, some speakers accept anaphoric <em class='ex'>one</em> directly after possessives. As such, it shouldn't be surprising to find cases of this occurring in a corpus. The question is how frequently should we expect it to happen, and is the frequency at which it happens unusual?
+    </p>
+    
+    <p id="P:Hypothesis">
+        A simple hypothesis (H&#8321;) about the frequency is that if anaphoric <em class='ex'>one</em> is degraded or ungrammatical for some speakers immediately following a possessive, then the frequency of tokens of anaphoric <em class='ex'>one</em> will be lower immediately following a possessive than in the corpus as a whole. The logic here is that while all English speakers, as far as I am aware, use <em class='ex'>one</em>, fewer accept or use it following a possessive, and so the expectation is that we should find fewer tokens in that environment. The null hypothesis (H&#8320;) is that possessive elements have no effect on the frequency of <em class='ex'>one</em> and the frequency of anaphoric <em class='ex'>one</em> immediately following a possessive element will be the same as in the rest of the corpus.
+    </p>
+    
+</section>
+
+<section id='S:Sampling'>
+
+    <h2>
+        Getting a sample
+    </h2>
+    
+    <p>
+        To test hypothesis H&#8321;, we need to know the frequency of anaphoric <em class='ex'>one</em> in the corpus as a whole. Since re-tagging every token of <em class='ex'>one</em> in the corpus would take far more time than would make sense, I decided to simply take a sample of the corpus and re-tag that. 
+    </p>
+    
+    <p>
+        I don't know whether the BNC is structured in such a way so as to distribute different kinds of texts throughout the corpus, so I decided to sample evenly from the corpus rather than taking a truly random sample. I settled on wanting around 1000 tokens in my sample, so the script I wrote to sample the corpus went through collected every 270th sentence containing a token of <em class='ex'>one</em>.<span class='note'>I arrived at 270 through a bit of trial and error, but I knew from my initial work on this project that there were 306,139 tokens of <em class='ex'>one</em> in the corpus. Thus, to get 1000 tokens, I needed some figure around 306.</span> This yielded 924 sentences containing tokens of <em class='ex'>one</em>, and 1022 separate tokens.
+    </p>
+    
+    <p>
+        The frequency of the tags found in the sample can be seen in the table below alongside the frequencies of the tags in the in the corpus as a whole. As can be seen, the frequencies are pretty close, so I'm fairly sure this sample is representative of the corpus as a whole.
+    </p>
+    
+    <table>
+        <tr>
+            <th>
+            </th>
+            <th colspan=2 style='border-bottom: 1px solid #000; border-bottom-width:'>
+                Tokens in corpus
+            </th>
+            <th colspan=2 style='border-bottom: 1px solid #000'>
+                Tokens in sample
+            </th>
+
+
+        </tr>
+        <tr class=head>
+            <th>
+                Tag
+            </th>
+            <th>
+                Number
+            </th>
+            <th>
+                Percent
+            </th>
+            <th>
+                Number
+            </th>
+            <th>
+                Percent
+            </th>
+
+        </tr>
+        <tr>
+            <td>
+                PNI
+            </td>
+            <td>
+                78525
+            </td>
+            <td>
+                25.65%
+            </td>
+            <td>
+                276
+            </td>
+            <td>
+                27.01%
+            </td>
+        </tr>
+        <tr>
+            <td>
+                PNI-CRD
+            </td>
+            <td>
+                21966
+            </td>
+            <td>
+                7.18%
+            </td>
+            <td>
+                81
+            </td>
+            <td>
+                7.93%
+            </td>
+        </tr>
+        <tr class="sep">
+            <td>
+                CRD
+            </td>
+            <td>
+                189299
+            </td>
+            <td>
+                61.83%
+            </td>
+            <td>
+                613
+            </td>
+            <td>
+                59.87%
+            </td>
+        </tr>
+        <tr>
+            <td>
+                CRD-PNI
+            </td>
+            <td>
+                4814
+            </td>
+            <td>
+                1.57%
+            </td>
+            <td>
+                17
+            </td>
+            <td>
+                1.66%
+            </td>
+        </tr>
+        <tr class="sep">
+            <td>
+                NN2
+            </td>
+            <td>
+                11503
+            </td>
+            <td>
+                3.76%
+            </td>
+            <td>
+                35
+            </td>
+            <td>
+                3.42%
+            </td>
+        </tr>
+        <tr>
+            <td>
+                NN0
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                0.00%
+            </td>
+            <td>
+                0
+            </td>
+            <td>
+                0%
+            </td>
+        </tr>
+        <tr>
+            <td>
+                UNC
+            </td>
+            <td>
+                27
+            </td>
+            <td>
+                0.01%
+            </td>
+            <td>
+                0
+            </td>
+            <td>
+                0%
+            </td>
+        </tr>
+        <tr>
+            <td>
+                VVI
+            </td>
+            <td>
+                2
+            </td>
+            <td>
+                0.00%
+            </td>
+            <td>
+                0
+            </td>
+            <td>
+                0%
+            </td>
+        </tr>
+        <tr class='sep'>
+            <td>
+                Total
+            </td>
+            <td>
+                306139
+            </td>
+            <td>
+            </td>
+            <td>
+                1022
+            </td>
+            <td>
+            </td>
+        </tr>
+        <caption>
+            Counts of the different tags used for tokens of <em class='ex'>one</em> and <em class='ex'>ones</em> in the <span class='sc'>bnc</span>, throughout the corpus and in a 1022-token sample.
+        </caption>
+    </table>
+
+    <p>
+        The next step was to re-tag every token of <em class='ex'>one</em> in the sample, using the tag set I used to tag tokens of <em class='ex'>one</em> following possessives. This was pretty tedious, as I hope the screenshot below makes clear.
+    </p>
+    
+    <img src='./tagging.png' width=100%>
+    
+</section>
+    
+<section id='S:Results'>
+
+    <h2>Results: Anaphoric <em>one</em> doesn't appear less frequently after possessives</h2>
+    
+    <p>
+        With all the re-tagging complete, we can now compare the data. <span class='note'>Most of the ambiguous/unclear tokens were ambiguous between numeral <em class='ex'>one</em> indefinite <em>one</em>.</span>For the purposes of comparison, I excluded any ambiguous tokens or any tokens where context was not sufficient to determine which tag it should receive. I also excluded tokens that were part of a title, since their presence shouldn't be affected by the presence of the possessive and because there was actually only one in the sample anyway (<a href="./bnc-search-1.html#P:Marquez">See my previous post</a> for some more discussion). The frequencies are reported in the table below.
+    </p>
+    
+    <table>
+        <tr> <th></th> <th></th> <th colspan=2 style='border-bottom: 1px solid #000'>After possessives</th> <th colspan=2 style='border-bottom: 1px solid #000'>In sample</th></tr>
+        <tr class=head>     <th>Tag</th> <th></th> <th>Number</th> <th>Percent</th> <th>Number</th> <th>Percent</th></tr>
+        <tr>                <td>1A1</td>    <td>Anaphoric <em>one</em> singular</td>    <td>94</td> <td>17.80%</td>  <td>161</td>    <td>15.94%</td></tr>
+        <tr>                <td>1A2</td>    <td>Anaphoric <em>one</em> plural</td>      <td>17</td> <td>3.29%</td>   <td>36</td>     <td>3.56%</td></tr>
+        <tr class="sep">    <td>1NC</td>    <td>Numeral <em>one</em> (alone)</td>       <td>352</td><td>66.67%</td>  <td>593</td>    <td>58.71%</td></tr>
+        <tr>                <td>1NP</td>    <td>Numeral <em>one</em> (in compound)</td> <td>33</td> <td>6.25%</td>   <td>6</td>      <td>0.59%</td></tr>
+        <tr>                <td>1NN</td>    <td>Numeral <em>one</em> (part of numeral)</td>  <td>25</td> <td>4.73%</td><td>34</td>   <td>3.37%</td></tr>
+        <tr>                <td>1NM</td>    <td>Numeral <em>one</em> (in modifier)</td> <td>7</td> <td>1.33%</td>    <td>21</td>      <td>2.08%</td></tr>
+        <tr class="sep">    <td>1PI</td>    <td>Impersonal <em>one</em></td>            <td>0</td>  <td>0.00%</td>   <td>102</td>    <td>10.10%</td></tr>
+        <tr>                <td>1PA</td>    <td>Indefinite <em>one</em></td>            <td>0</td>  <td>0.00%</td>   <td>57</td>     <td>5.64%</td></tr>
+        <tr class='sep'>  <td colspan=2 style='font-weight:bold;'>Total</td> <td>528</td> <td></td> <td>1010</td> <td></td> </tr>
+        <caption>
+            Frequencies of tags on tokens of <em class='ex'>one</em> after possessives and in a sample of the <span class='sc'>bnc</span>. 
+        </caption>
+    </table>
+    
+    <p>
+        <span class='note'>Put another way, given the frequency in the sample, we should expect to find about 103 tokens of anaphoric <em class='ex'>one</em> in the possessive data assuming the possessive has no affect on the distribution of anaphoric <em class='ex'>one</em>.</span>In the end, the frequency of anaphoric <em class='ex'>one</em> after possessives is very similar to the frequency of anaphoric <em class='ex'>one</em> in the sample. Combining singular and plural tokens, there are a total of 111 tokens of anaphoric <em class='ex'>one</em> following possessives, or 21.02% of tokens of <em class='ex'>one</em>, and there are 197 tokens in the sample, which is 19.50% of the tokens of <em class='ex'>one</em> in the sample. 
+    </p>
+    
+    <p>
+        Additionally, the frequency of numeral <em class='ex'>one</em> on its own is about 12% higher following a possessive than in the sample. The occurrence of <em class='ex'>one</em> in other morpho-syntatic structures following possessives is also different, with a <em class='ex'>one</em>-initial compound being much more common after a possessive, and <em class='ex'>one</em>-initial sentential modifiers being far less common. Neither impersonal nor indefinite <em class='ex'>one</em> immediately follow a possessive, and no tokens of  indefinite <em class='ex'>one</em> are observed after possessives.
+    </p>
+    
+</section>
+
+<section id='S:Discussion'>
+    
+    <h2>
+        Discussion
+    </h2>
+    <p>
+        The main result is that anaphoric <em class='ex'>one</em> appears no less frequently immediately following a possessive than it does in the sample as a whole, falsifying <a href="#P:Hypothesis">hypothesis H&#8321; as proposed above</a>. We cannot reject the null hypothesis (that the possessive has no effect on the distribution of anaphoric <em class='ex'>one</em>). 
+    </p>
+    
+    <p>
+        I am actually very surprised by this result &ndash; it is not what I expected at all. I'm not at all sure why intuitive judgments do not line up well with the corpus data. There are a few explanations that I think are worth pursuing:
+    </p>
+    
+    <ul>
+        <li>
+            As I've discussed previously, I suspect that there is a dialectal difference here and that speakers of some British English speakers may generally find these cases more acceptable than American English speakers (though, as I've also mentioned, I've encountered Americans who accept anaphoric <em class='ex'>one</em> immediately after a possessive). I suspect with a large enough corpus of American English I could repeat this study<span class='note'>This would also allow for a direct dialect-to-dialect comparison.</span> to see if the results are any different. Since starting this project, I've become aware of the <a href='http://www.anc.org/' class='ext' target="_blank">American National Corpus</a>, a 15-million-word corpus that can be made to work with the Natural Language Tool Kit, so such a project is totally feasible.
+        
+        </li>
+        
+        <li>
+            In their discussion of anaphoric <em class='ex'>one</em>, <a href="#Cite:Payne">Payne et al. (2013: 812)</a> suggest that frequency plays a role in the acceptability of anaphoric <em class='ex'>one</em> when it takes an <em class='ex'>of</em>-PP complement, as <em class='ex'>one</em> competes with other anaphoric strategies that are generally preferred. <span class='note'>There is an almost-completed manuscript on this topic that I hadn't completed before I left academia, though I hope to complete it some day. If you're interested in this work, please let me know.</span><a href="https://nlacara.github.io/handaus/LaCaraDGfS-2018-ones.pdf" class='doc' target='_blank'>I've done work on the competition between noun phrase ellipsis and anaphoric <em class='ex'>one</em></a> (which spurred this project), and while, intuitively speaking, ellipsis is more acceptable in this context, it is unclear to me whether it is statistically more common. So one direction to take this is to try to see how common noun phrase ellipsis actually is after a possessive or whether other strategies are used to see if other factors favor the use of <em class='ex'>one</em> in certain circumstances.
+
+        </li>
+    </ul>
+    
+    </p>
+
+    <p>
+        However, the results do not suggest the possessive has no effect on the elements that come after it. The results show that the numeral <em class='ex'>one</em> is more frequent after possessives than in the corpus as a whole. I suspect there are two reasons for this. First, in the structure of the noun phrase, numerals follow directly after possessive elements, preceding adjectives and nouns (amongst other elements), so if a numeral occurs in a possessive at all, it will occur immediately following the possessive element. This is also probably why compounds beginning with <em class='ex'>one</em> are so much more common after a possessive (as in <em class='ex'>her one-woman band</em>). Since many such compounds are attributive modifiers, this is exactly where you'd expect to find them, so it makes sense that they would be more common directly after a possessive. 
+    </p>
+    
+    <p>
+        Second, the numeral probably takes up some of the distribution left by the absence impersonal and indefinite <em class='ex'>one</em>. These elements do not occur at all following possessives, but this is hardly surprising since these elements are presumably pronominal, and pronouns do not occur inside the main structure of a noun phrase.
+    </p>
+
+</section>
+
+<section id = 'S:Conc'>
+    <h2>
+        Conclusion
+    </h2>
+    
+    <p>
+        So in conclusion: A corpus study of the <span class='sc'>bnc</span> shows that anaphoric <em class='ex'>one</em> occurs directly after possessives, and the presence of the possessive does not depress the frequency at which anaphoric <em class='ex'>one</em> occurs compared to the rest of the corpus. This is a suprising result, since the intuitive judgments of many native English speakers suggests that anaphoric <em class='ex'>one></em> should not be all that frequent immediately following a possessive element. I suggest above that work with an American English corpus (like the American National Corpus) might yield different results and suggest that a more direct comparison with noun phrase ellipsis might yield a better basis for understanding why the corpus data does not match native speaker judgments.
+    </p>
+    
+    
+</section>
+
+<footer>
+<h2>
+    References
+</h2>
+
+<ul>
+    <li id='Cite:Chomsky1965'>
+        Chomsky, Noam (1965). <em>Apsects of the Theory of Syntax</em>. Cambridge: The MIT Press.
+    </li>
+    
+    <li id='Cite:Payne'>
+        Payne, John, Geoffery K. Pullum, Barbara C. Scholz, &amp; Eva Berlage (2013). Anaphoric one and its implications. <i>Language</i> 89(4), 794-829. <a href="http://doi.org/10.1353/lan.2013.0071" target="_blank" class="ext">doi:10.1353/lan.2013.0071</a><img src='retag.png' width=0 class='noborder' style='display:inline;'>.
+    </li>
+    
+</ul>
+
+</footer>
+</div>
+
+</body>
+

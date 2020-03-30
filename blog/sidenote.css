@@ -10,16 +10,21 @@ body {
     background: #EFF3F6;
     margin-left:1.5em;
     counter-reset: example;
+    counter-reset: tab;
     padding-top: 4ex;
 }
 
+div.container {
+    width: 55.75em;
+    margin-left: auto;
+    margin-right: auto;
+/*     border-style: dotted; */
+}
+
+
 div {
     text-align: justify;
-    width: 68.75%;
-    max-width: 50em;
-    min-width: 30em;
-/*     margin-left: auto; */
-/*     margin-right: auto; */
+    width: 42em;
 }
 
 header {
@@ -55,8 +60,8 @@ footer {
 
 span.note {
     float: right;
-    width: 42%;
-    margin-right: -45%;
+    width: 15em;
+    margin-right: -16em;
     font-family:'Lato', sans-serif;
     color: #214E70;
     font-size: 87.5%;
