@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>A brief review of ‘Natural Language Processing with Python’ &ndash; Nicholas LaCara</title>
+    <link rel="stylesheet" type="text/css" href="../sidenote.css">
+    <style>
+        html-short:before {content: "html"; font-variant: small-caps;}
+    </style>
+
+  <meta charset="UTF-8">
+  <meta name="keywords" content="NLTK, Python, natural language tool kit, textbook, review">
+  <meta name="author" content="Nicholas LaCara">
+    <link rel="icon" type="image/png" href="../../favicon.png">  
+</head>
+
+  <header>
+    Nicholas LaCara : : A brief review of <cite>Natural Language Processing with Python</cite> <span class='nav'><a href="../index.html">Back to blog index</a> | <a href="../../index.html">Back to website</a></span>
+  </header>
+
+  <body>
+  
+  <div class='container'>
+    <h1>
+       A brief review of <cite>Natural Language Processing with Python
+    </h1>
+    
+
+    Nicholas LaCara &ndash; April 2020 &ndash; Boston, <span class='sc'>ma</span>
+
+    <div>
+        <p class='abstract'>
+            While between projects, I decided to brush up on some of the material in the <span class='sc'>nltk</span> textbook <a href="http://www.nltk.org/book/" target='_blank' class='ext'><cite>Natural Language Processing with Python</cite></a> by Bird, Klein, and Loper. Overall, I have found it a really useful resource, and I wanted to share some perspectives I had on it as a learner (especially since most of my interaction with pedagogical texts over the last few years has been as a teacher). As a <em>free</em> text, it is an excellent resource, but I do have a few criticisms to voice and some words of advice to anybody looking to use it as a way of learning the <span class='sc'>nltk</span>.
+        </p>
+        
+    <h3>Roadmap</h3>
+        
+    <ul>
+        <li><a href="#S:Summary" class='int'>A summary of the book</a> &ndash; A general summary of the book and what it's about.</li>
+            <ul>
+                <li><a href="#S:Goals" class='int'>Goals</a> &ndash; The authors’ stated goals</li>
+                <li><a href="#S:Contents" class='int'>Contents of the book</a> &ndash; An overview of what each chapter discusses</li>
+                <li><a href="#S:Audience" class='int'>The target audience</a> &ndash; Who this book is intended for</li>
+            </ul>
+        <li><a href="#S:MyBackground" class='int'>My background</a> &ndash; Where I'm coming from</li>
+        <li><a href="#S:Content" class='int'>Content</a> &ndash; An evaluation of the book's content</li>
+            <ul>
+                <li><a href="#S:Examples" class='int'>Examples in the book</a>
+                <li><a href="#S:Exercises" class='int'>Exercises</a> &ndash; Some commentary on the book's exercises</li>
+            </ul>
+        <li><a href="#S:Conc" class='int'>Conclusion</a> &ndash; Some final thoughts</li>
+    </ul>
+        
+    <section id='S:Summary'>
+        <h2>
+            A summary of the book
+        </h2>
+        
+        <p>
+        <cite>Natural Language Processing with Python</cite>, which I will just call <em>the <span class='sc'>nltk</span> book</em> for short, is a free, online textbook that introduces natural language processing (<span class='sc'>nlp</span>) alongside the Natural Language Toolkit (<span class='sc'>nltk</span>), a set of ibraries and resources for processing natural language data in Python. The version I review here, according to <a href="http://www.nltk.org/book/ch00.html" class='ext' target="_blank">the preface</a> was released in September 2019. 
+        </p>
+        
+    <section id='S:Goals'>
+        <h3> Goals </h3>
+        
+        
+        <p>
+            The authors <a href="http://www.nltk.org/book/ch00.html" class='ext' target='_blank'>state</a> that ‘[t]his is a book about Natural Language Processing’, with the goal of ‘provid[ing] a highly accessible introduction to the field of <span class='sc'>nlp</span>’. They introduce <span class='sc'>nlp</span> concepts and techniques using the <span class='sc'>nltk</span>, which, not coincidentally, the authors also created. 
+            <!--What is the NLTK?-->            
+            The <span class='sc'>nltk</span> provides a relatively easy-to-use platform for working with natural language data in <a href="https://www.python.org/" class='ext' target='_blank'>Python</a>. It provides interfaces for several text corpora (tagged and untagged) and libraries for common <span class='sc'>nlp</span> tasks, including classification, tokenization, tagging, and more. It is free and open-source, and it is available on Linux, Windows, and macOS.
+        </p>
+        
+        <p>
+            As such, the book is intended to function both as an introduction to <span class='sc'>nlp</span> and as an introduction to the <span class='sc'>nltk</span>; the authors also mention that the book will teach programming to those who have not already learned it. They emphasize, too, that the book is meant to be a practical introduction in which the reader will learn by example; it is not intended as a reference work.
+        </p>
+        
+        <p id="P:Python2">
+            <span class='note'><img src='./nltk_book_ed_1.jpg' width = 100% class='noborder'></span>I should also note that there are two editions of this book. The first edition was <a href="http://shop.oreilly.com/product/9780596516499.do" class='ext' target='_blank'>published by O'Reilly</a>, though the full contents is <a href="http://www.nltk.org/book_1ed/" class='ext' target='_blank'>also available on the <span class='sc'>nltk</span> website</a>. This edition was published in 2009 and assumes the <a href="https://python3statement.org/" class='ext' target="_blank">now unsupported</a> Python 2. <a href='http://www.nltk.org/book/' class='ext' target='_blank'>The current edition</a> assumes the now current Python 3, and this is the version of the book that I worked through. Unfortunately, there appear to be no plans to publish a printed version of this edition (I'd like it for my bookshelf!).
+        </p>
+    </section>
+    
+    <section id='S:Contents'>
+        <h3>Contents of the book</h3>
+        
+        <p>
+            <!--What topics does the book cover?-->
+            The book covers a range of basic topics related to work in <span class='sc'>nlp</span>. The first chapter covers some basics of corpus linguistics (including concordances, dispersion plots, counting distinct vocabulary, and some basic descriptive statistics), an overview of problems in natural language understanding, as well as some basics of coding in Python. Subsequent chapters are generally center around a single topic, with earlier chapters introducing related Python concepts and data structures as well. Chapter 2 focuses on accessing corpora provided by the <span class='sc'>nltk</span>. Chapter 3 turns to processing raw text from other sources to make it suitable to <span class='sc'>nlp</span> applications (including the basics of getting text from the web) as well as a long (but useful!) discussion of regular expressions. Chapter 4 takes a break from explicitly working on <span class='sc'>nlp</span> tasks to discuss scripting in Python. Chapter 5 introduces automatic tagging, and Chapter 6 discusses how to automatically classify entire texts using features of that text. 
+        </p>
+        
+        <p>
+            Chapters 7, 8, and 9 turn to issues that are more syntactic in nature. Chapter 7 focuses on chunking, segmenting multi-token sequences with the goal of extracting information about their relationships. Chapters 8 and 9 focus on identifying and parsing syntactic structures, with the former chapter focusing on the basics of traditional context-free grammars (<span class='sc'>cfg</span>s) and the latter focusing on feature-based <span class='sc'>cfg</span>s.<span class='note'>For the linguists, these are the sorts of unification-based grammars found in approaches like <span class='sc'>gpsg</span> and <span class='sc'>hpsg</span></span> Chapter 10 introduces natural language understanding (<span class='sc'>nlu</span>), necessitating an introduction to propositional and first-order logic (as well as cameos from <span class='sc'>sql</span> and discourse representation theory). The final contentful chapter, Chapter 11, focuses on compiling and managing corpus data.
+        </p>
+    </section> 
+    
+    <section id='S:Audience'>    
+        <h3>The target audience</h3>
+        <p>
+            <!--Who is the book targeted to?-->
+            <a href="http://www.nltk.org/book/ch00.html#audience" class='ext' target="_blank">The authors state</a> that the book is intended for ‘a diverse range of people who want to learn how to write programs that analyze written language, regardless of previous programming experience’, including those who are new to programming or Python or those who are already familiar with Python but want to learn basic <span class='sc'>nlp</span> methodology. Thus, the book assumes an introductory to intermediate familiarity with computer science concepts, though personally I suspect somebody who has never coded <em>anything</em> may have trouble getting started with just the discussion provided in the book &ndash; the book assumes you already have Python installed and does not, <em>e.g.</em>, seem to explain how to run a script from from the command line (at least not anywhere I could find). If you're totally new to coding, it would probably be useful to have a more knowledgeable friend or colleague walk you through some of the basics before you get started with this book's content.
+        </p>
+        
+        <p>
+            A nice touch in the preface is <a href="http://www.nltk.org/book/ch00.html#for-instructors" class='ext' target="_blank">a section for instructors</a> offering suggestions how to structure courses for different kinds of students (linguistics <em>vs.</em> engineering) around the chapters in the book. If you are looking to teach a course around this book, this is obviously useful, but I found this helpful even coming at this from a self-study perspective as it signaled to me ahead of time what parts of the text I would be more likely to spend more time on as a linguist. Speaking of which&hellip;
+        </p>
+    </section>
+    </section>
+    
+    <section id="S:MyBackground">
+        
+        <h2>
+            My background
+        </h2>
+        
+        <p>
+            Though it is not typical to include information about the reviewer in a(n academic) book review, I think it is helpful to know where I am coming from, as my experience as a linguist makes my experience perhaps different from, say, a computer scientist. I have a PhD in (theoretical) linguistics and taught linguistics at the undergraduate and graduate levels, so thinking about language systematically and as an object of analysis is practically second nature to me. When starting this book, I already had some basic familiarity with Python and its data structures, having done <a href="https://www.codecademy.com/" class='ext' target='_blank'>Codecademy's</a> online Python course and having worked through most of Zed Shaw's <a href='https://learncodethehardway.org/python/' class='ext' target="_blank"><cite>Learn Python the Hard Way</cite></a><span class='note'>For what it's worth, Shaw's book should be called <cite>Learn Python the Tedious Way</cite>. I do not recommend it. Maybe I'll write about why someday.</span>, and as <a href="../linux/linux.html">a Linux user</a> I have a lot of experience at the command line and writing scripts, but I had no significant recent experience doing <span class='sc'>nlp</span> work, and I by no means a computer scientist. Consequently, I don't feel comfortable rating how much or how well this book teaches <span class="sc">nlp</span> techniques or concepts &ndash; I'm not (yet) an expert in this area and so cannot provide an expert opinion. My review, therefore, comes from the position of a linguist, an intermediate coder, and as somebody self-teaching <span class="sc">nlp</span> techniques.
+        </p>
+    </section>
+    
+    <section id="S:Content">
+        
+        <h2>
+            Content
+        </h2>
+        
+        <p>
+            Now I turn to the content of the text, though I treat the exercises separately in <a href="#S:Exercises" class="int">a section below</a>. Overall,<span class="note">The main thing I hadn't seen before was <a href="https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions" class="ext" target="_blank">list comprehensions</a>, which weren't covered in anything I had worked through previously. List comprehensions are great and I'm glad the <span class='sc'>nltk</span> book spends time on them.</span>  I found the content to be accessible to somebody with a basic but good understanding of Python syntax and prior knowledge of its data structures. In general, when I started, I was able to make my way through a single chapter, its examples, and most of the exercises in a little less than a week. This was a good pace for me, giving me enough time to digest each chapter's contents without getting burnt out.
+        </p>
+        
+        <p>
+            <a href="http://www.nltk.org/book/ch00.html#for-instructors" class='ext' target='_blank'>The authors note</a> in the preface that ‘[t]his book presents programming concepts in an unusual order’, but this was not obviously apparent to me as a linguist. Starting this book with a basic understanding of how to code in Python, the direction and development of the discussion felt natural. So far as I am able to tell, concepts are presented in a logical and thoughtful order, with each chapter building on concepts discussed in those preceding it. Individual chapters are also well-structured, though the content of earlier chapters is a bit more heterogeneous due to the dual need to teach both Python and <span class="sc">nlp</span> concepts. Early sections dedicated to Python can sometimes feel a bit like interpolations, though not necessarily excursuses.
+        </p>
+        
+        <p>
+            <span class='note'>I should add that the tone of the book never feels condescending or hand-holding (as some intro-level textbooks can in some fields).</span>In keeping with this being an introductory text book, most of the discussion is geared toward the basics of <span class='sc'>nlp</span>. Discussions, on the whole, are clear and straightforward. In general, this means that a lot of the gritty technical details of the code are left undiscussed, and a lot of theory is only presented at a basic or surface level, as the focus is to get the reader to accomplish <span class='sc'>nlp</span> tasks as quickly as possible. I think this is the right way to go about it. As I worked through this book, I felt like I was constantly making progress and learning new things. <a href="#S:Exercises" class='int'>The exercises</a><span class='note'>I discuss the exercises in more detail <a href="#S:Exercises" class='int'>below</a>. As a preview, the exercises usually match the chapter content pretty well.</span> helped greatly with this feeling, as many of them require the reader to come away with a practical understanding of the task or the code to reach the right answer. <a href="http://www.nltk.org/book/ch00.html#emphasis" class='ext' target='_blank'>As the authors state</a>, this is meant to be a practical introduction. I believe they achieve that goal, and I think it is fine to leave some of the technical nitty-gritty aside to get there.
+        </p>
+        
+        <p>
+            Occasionally, though, there are places where the discussion feels somewhat thin or incomplete. For example, <a href='http://www.nltk.org/book/ch07.html' class='ext' target='_blank'>Chapter 7</a> is nominally about extracting information from text &ndash; a topic of great importance to natural language understanding tasks. However, most of the chapter is dedicated to chunking text (an apparent prerequisite for certain information extraction tasks) before turning to recursion in linguistic structure (which would have better fit in the following chapter). This was one of the few chapters I came out of where I felt like I didn't have a good handle on what the workflow looked like beyond the absolute basics; there was not enough of an explanation of how to actually go about getting useful information from a text or how to work with or use that information.
+        </p>
+        
+    <section id="S:Examples">
+        <h3>Examples in the book</h3>
+        
+        <p>
+            In keeping with the book's goal of being a practical introduction, much of the discussion in each chapter centers around specific examples of how to accomplish various tasks using the tools provided by the <span class='sc'>nltk</span>. These are usable examples of code, usually followed by the expected output of that code. There are also links to the scripts that the reader can download and run on their own system. The authors do a good job of breaking apart the code into logical chunks and explaining what each chunk does, which is helpful for people who are not yet used to reading code. Several chunks of code are followed by ‘Your Turn’ sections, inviting the reader to use and modify the script to see how things actually work, which provides some valuable experience editing code.
+        </p>
+        
+        <span class='note'>Example code from <a href="http://www.nltk.org/book/ch02.html#brown-corpus" class=ext target="_blank">Chapter 2</a> demonstrating how to access the Brown Corpus and calculate the frequency of various words.</span>
+        <a href="./nltk_code_ex.png"><img src='./nltk_code_ex.png' width=100% class='noborder' alt="Example code from Chapter 2 demonstrating how to access the Brown Corpus and calculate the frequency of various words."></a>
+        
+        <p>
+            As useful as these examples are, there is a problem where some code blocks and examples were not correctly rendered into <span class='sc'>html</span> when the book was converted from its original format, resulting in blocks containing error messages. An example of this can be seen in the screenshot below:
+        </p>
+        
+        <span class='note'>The top image comes from <a href="http://www.nltk.org/book/ch09.html#case-and-gender-in-german" class=ext target="_blank">Chapter 9 of the second edition</a> and shows an error that occurs when rendering the book in browser. The bottom image is from <a href="http://www.nltk.org/book_1ed/ch09.html#tab-german-def-art" class="ext" target="_blank">the online version first edition</a> and shows how this is supposed to look.</span>
+        <a href="./nltk_problem_0.png"><img src='./nltk_problem_0.png' width=100% class='noborder'></a>
+        
+        <p>
+            These error messages can be found in several chapters, and it is somewhat surprising that the authors would not have corrected these easily visible errors before uploading the book. Fortunately, there is a work-around in that most (if not all) of the malfunctioning examples appear in the first edition of the book (though occasionally with different example numbers), as shown in the lower part of the above screenshots. This usually gives a good idea of what was supposed to appear, though be warned that (<a href="#P:Python2" class="int_up">as mentioned above</a>) the first version of the book was written with Python 2 in mind while the current edition assumes Python 3. This means that code given in the first edition may not run if used with an up-to-date Python installation. 
+        </p>
+
+        <p>
+            As the authors note, the book is definitely not a reference work. It is not structured as one, and you are better off looking through the <span class='sc'>nltk</span> documentation if you are looking for information about a specific library or function. That said, there is <a href="http://www.nltk.org/book/term_index.html" class='ext' target='_blank'>an index of terms</a> with back-references, which is helpful if you want to see where a specific term is introduced or discussed. However, the book lacks a detailed contents section, and consequently it can sometimes be hard to find where certain ideas or topics were discussed rather than specific terms. Furthermore, <a href="http://www.nltk.org/book/bibliography.html" class="ext" target="_blank">the bibliography</a> is surprisingly blank apart from the title (again, however, I found all the references I looked up in <a href="http://www.nltk.org/book_1ed/bibliography.html" class='ext' target='_blank'>the first edition's bibliography</a>). Both of these issues should be easy to remedy in future updates.
+        </p>
+        
+        <p>
+            As long as you don't mind working a little harder, these usability issues should not be too detrimental; I don't think there was any missing content I wasn't able to recover somehow. Overall, I do not think these issues should discourage anybody from working through the book, though I suspect they might make using it as a course text book less appealing (or, at least, would require students to be cooperative or for the instructor to do some extra work). Hopefully the authors fix these issues in the future as that would make the book a much better and more polished resource.
+        </p>
+    </section>
+    
+    
+    <section id='S:Exercises'>
+        <h3>
+            Exercises
+        </h3>
+        
+        <p>
+            There are lots of exercises at the end of each chapter, with a good amount of diversity in what they ask you to accomplish. Since I am the kind of person who learns by doing, this was, for me, one of the most appealing parts of the book and one of the things that helped me to learn the most. Exercises are divided into three categories of difficulty and are usually appropriately categorized. Most of them are relatively short and have a clear goal, which did a lot to make me feel like I was progressing at a good rate and learning how to deal with various kinds of problems. Even at my level of experience, I found I could at least make some headway with a lot of the difficult problems, though I'll admit that some of them did seem to need more coding experience than I had when I first worked through the book.
+        </p>
+        
+        <p>
+            While the abundance of exercises is a clear strength, one of the weaknesses here is the lack of answers for those exercises. This is not always a hindrance: In many cases, it is pretty clear what a successful answer to a given exercise would have to look like based on whether the script you write gives the desired output. Additionally, providing an answer key could limit the utility of this book as a course text book.
+        </p>
+        
+        <p>
+            However, given that this book is also intended for self-directed study, an answer key would be helpful for three reasons: 1) sometimes you (or your students) won't know how to solve the exercise, and having the answers available (either as a learner or a teacher) can be a useful tool for learning material that is not explicitly taught in the text; 2) it is not always clear what the exercises are asking for, and having an answer key would help elucidate what the authors intend the reader to learn from the exercise; and 3) inexperienced coders who might come up with their own solution would no doubt still benefit from seeing how other people solved the problem under discussion.
+        </p>
+        
+        <p>
+            <span class="note">In this context, a parser is a function that takes a sentence and determines the underlying syntactic structure of that sentence.</span>As a case in point, consider the (difficult) exercise given at the end of <a href="http://www.nltk.org/book/ch08.html" class='ext' target='_blank'>Chapter 8</a> (on syntactic parsing) that challenges the reader to develop their own left-corner parser. I'll freely admit that I didn't feel particularly confident taking a crack at this, and the discussion in the chapter doesn't touch on how one might go about doing this. The exercise instructs the reader to use the <code>ParseI</code> class (a class which does not appear to exist; I think this must refer to the <code>ParserI</code> class), but there is no previous reference to this. I think this is a place where the authors are subtly encouraging the reader to consult documentation beyond the text book, but this is nonetheless a case where having some sort of answer key would provide extraordinary insight into how to do tasks like this, since it is not provided elsewhere in the book. 
+        </p>
+        
+        <p>
+            There are also a few places where the exercises don't quite line up with chapter content. Another example from Chapter 8: There is a problem that asks the reader to <quote>‘Compare the performance of the top-down, bottom-up, and left-corner parsers’</quote>. However, the chapter, while discussing the theory behind left-corner parsing, does not introduce any left-corner parser that might be included with the <span class='sc'>nltk</span>. There is one, but I had to look through <a href='https://www.nltk.org/api/nltk.parse.html#nltk.parse.chart.BottomUpLeftCornerChartParser' class='ext' target='_blank'>the <span class='sc'>nltk</span> documentation</a> to find it.
+        </p>
+        
+        <p>
+            These sorts of issues are more of the exception than the rule, though. Overall, the exercises are a real strength of the book and make a great addition to the content. If I may make a comparison to another free online textbook I worked with, I recently spent a few weeks reading Danielle Navarro's <a href="https://learningstatisticswithr.com/" class='ext' target='_blank'><cite>Learning Statistics with R</cite></a>. Like the <span class='sc'>nltk</span> book, Navarro's book uses lots of examples. <span class='note'>To Navarro's credit, she uses this book in her own course and I'm sure she has exercises to go along with it. I wish it were easier to use in self-directed study.</span>I enjoyed it and found it clear and easy to read, but the lack of exercises made it much harder for me to gauge my progress as I went along. This made me appreciate the exercises in <cite>Natural Language Processing with Python</cite> even more than I did before.
+        </p>
+    </section>
+    </section>
+    
+    <section id="S:Conc">
+    
+        <h2> Conclusion</h2>
+        
+        <p>
+            In summary, if you are interested in teaching yourself <span class='sc'>nlp</span>, <cite>Natural Language Processing with Python</cite> is a great place to start. It is not a perfect textbook, but as a free textbook it is an excellent resource and will get you coding from the start. The content is clear and presented logically and at a good pace, and the exercises are a great way to check and develop your understanding as you progress. That said, the book is probably not completely appropriate for somebody with absolutely no coding or scripting experience, some of the problems with the book itself will present usability issues to any reader, and the lack of an answer key for the exercises might leave some readers scratching their heads. The good news is that it costs nothing to try, which makes it a lot easier to look past these issues.
+        </p>
+    
+    </section>
+    
+    </div>
+    
+    
+  </div>
+  </body>
+  
+</html>

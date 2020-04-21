@@ -8,7 +8,6 @@ body {
     font-size:16px;
     line-height:1.375;
     background: #EFF3F6;
-    margin-left:1.5em;
     counter-reset: example;
     counter-reset: tab;
     padding-top: 4ex;
@@ -182,7 +181,6 @@ h2 {
 h3 { 
     font-size:112.5%; /* 150 * 3/4 == 112.5*/
     color:#618098;
-    margin-top:0em;
     font-weight:400;
 }
 
@@ -287,7 +285,12 @@ content: " \1f5ce";  /* Document character */
 }
   
 a.int:after {
-content: "\21B4";
+/*content: "\21B4";*/
+content: "\21D3";
+}
+
+a.int_up:after {
+content: "\21D1";
 }
 
 header a:link 
