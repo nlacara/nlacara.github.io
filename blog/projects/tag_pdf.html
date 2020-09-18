@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Some recent projects</title>
+    <link rel="stylesheet" type="text/css" href="../sidenote.css">
+    <style>
+        html-short:before {content: "html"; font-variant: small-caps;}
+    </style>
+
+  <meta charset="UTF-8">
+  <meta name="keywords" content="python, nltk, nlp, penn treebank, tag set, pdf, tagging, corpus, corpora, linguistics">
+  <meta name="author" content="Nicholas LaCara">
+    <link rel="icon" type="image/png" href="../../favicon.png">  
+</head>
+
+  <header>
+    Nicholas LaCara : : Some recent projects<span class='nav'><a href="../index.html">Back to blog index</a> | <a href="../../index.html">Back to website</a></span>
+  </header>
+
+  <body>
+  
+  <div class='container'>
+  
+  <div class='text'>
+  
+    <h1>Some recent projects</h1>
+  
+    <p class="abstract">
+        This is just a short post about two recent projects I've been working on: A script for practicing corpus tagging, and a program for searching <span class="sc">pdf</span> files.
+    </p>
+
+    <h2>Tag quiz</h2>
+    
+    <p>
+        I wanted to brush up a bit on my knowledge of the Penn tag set because it's been a few years since I last had to use it in any way. I figured there would be some sort of application on the internet that would allow somebody to practice tagging with this particular tag set (since it is well known) and test how accurately they tagged material with it. I was really surprised that I could find no such pre-existing application on the web. Fortunately, with access to <a href="http://www.nltk.org/howto/corpus.html#parsed-corpora" class="ext" target="_blank">the subset of the Penn Treebank provided by the <span class="sc">nltk</span></a>, it was fairly easy to code up my own solution in an evening.
+    </p>
+    
+    <p>
+        The script takes sentences from the Penn Treebank corpus included with the <span class='sc'>nltk</span> and asks the user to provide tags for each token in the sentence. The script then compares the user's tags to those already in the corpus and tells the user how well they did. At the end, it give the user their overall accuracy and tells the user if there are particular tags that they are getting wrong frequently.
+    </p>
+    
+    <img src="./tag_quiz.png" width=87.5%>
+    
+    <p>
+        Right now, the code is set up specifically to extract tags from the parsed trees in the <span class='sc'>nltk</span>'s subset of the Penn Treebank corpus, but in principle this can be easily adapted to work with any corpus with any tag set. In the future I plan to set this up so it can work with other corpora and, therefore, other tag sets.
+    </p>
+    
+    <p>
+        You can <a href="https://github.com/nlacara/tag_quiz" class="ext" target="_blank">get the script here</a>.
+    </p>
+    
+    <h2>PDFdex</h2>
+    
+    <p>
+        Another project that I have been working on is a program that extracts text from <span class='sc'>pdf</span> files to allow a user to quickly search through several <span class='sc'>pdf</span> files at once. I got the idea a while back when I was trying to remember where I had read something in one of several (long) <span class='sc'>pdf</span> files I have but couldn't remember which one I read it in. I thought to myself, ‘it would sure be nice if I could search all of these files at once’, and then instead of just downloading Evernote<span class="note">Evernote is actually one of those pieces of software <a href=" https://help.evernote.com/hc/en-us/articles/208313748-Evernote-on-Linux" class="ext" target="_blank">that isn't available for Linux</a>, at least not with an official client. <a href="../linux/linux.html">I've written a little about this issue</a>.</span> like a regular person, I decided it was time to learn how to extract text from <span class='sc'>pdf</span> files in Python.
+    </p>
+    
+    <p>
+        The result is what I have been calling PDFdex (which is not a good name admittedly, but I never claimed to be good at naming things). It is still in what we might call an alpha stage, in that I've been focusing on implementing the features that I want in it rather than user-friendliness (or making it so that it won't crash if you tell it to do the wrong thing). Right now, it loads the text from individual <span class='sc'>pdf</span> files into a database, and allows the user to search the full text of each <span class='sc'>pdf</span> in that database. The search returns the page numbers containing the search string (if any) and allow the user to concordance the results so they can see some context for that result before they even open the <span class='sc'>pdf</span> file itself:
+    </p>
+    
+    <img src="./pdfdex.png" width=87.5%>
+
+    <p>
+        Beyond this, the program attempts to identify potential keywords in the document and can also try to identify which other <span class='sc'>pdf</span> files in the database are similar. These functionalities are both fairly primative right now. Keyword identification is currently just picking out high-frequency tokens that aren't stop words, and the document comparison functionality just calculates similarity based on the Jaccard index or by seeing if documents share a high number of keywords. I'm still learning about keyword identification and document comparison, but at least for the document comparison functionality I hope to drop in some ready-to-go functionality from a package like spaCy.
+    </p>
+        
+    <p>
+        <a href="https://github.com/nlacara/pdfdex" class="ext" target="_blank">The code that's on GitHub right now</a>, if anybody wants to look at it, is really more than a proof of concept than anything else. One issue with the current code is that I'm storing the database as a dictionary containing the full text of each <span class='sc'>pdf</span> file. This has been convenient for some things; for instance, I can save the dictionary as a <span class='sc'>json</span> file (which let me make some hand edits early on in a text editor), and dictionaries are generally quite fast. But using dictionaries for this task can get pretty tedious; each <span class='sc'>pdf</span> file is stored as a dictionary in the larger dictionary, with different parts of its metadata (the path the to file, the text of individual pages, the keywords) stored as keys to that dictionary. This is sort of what I get for keeping around the orignal code I used from when I was first testing out ideas, but I plan on going back and recoding a lot of the core of this to do the thing that makes sense: Make each <span class='sc'>pdf</span> file a Python object.
+    </p>
+    
+  </div>
+  </div>
+  </body>
+  
+</html>
