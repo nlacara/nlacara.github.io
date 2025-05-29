@@ -39,6 +39,7 @@ div.text
   {
     border:0px solid #AAB7C1;
     line-height:21px;
+    margin-bottom: 2ex;
   }
   
 .calen { 
@@ -98,6 +99,10 @@ span.login {
     float:right;
 }
   
+span.name
+  {
+/*     color: #ECC590; */
+  }
   
 div.addy
   {
@@ -109,16 +114,15 @@ div.addy
 div.abs /* For abstract boxes on links page */
   {
     background-color:#EFF3F6;
-    border:0px solid #AAB7C1;
-/*     width: 660px; */
+    border:1px solid #AAB7C1;
     padding-left:1em;
     padding-right:1em;
     padding-top:1ex;
-    font-size:15px;
-    line-height:18px;
+    font-size: 85%;
     text-align:justify;
-    margin-left:0em;
-    margin-right: 2em;
+    margin-left: 0em;
+    margin-right: 0em;
+    width: 95%;
   }
 
 div.hand /* For handout boxes on links page */
@@ -173,10 +177,9 @@ li
 li.article
 {
   padding-left: 0em;
-  list-style-type: none;
-  margin:0em;
-  margin-bottom:2ex;
-  margin-top:-1ex;
+  margin: 0em;
+  margin-bottom: 2.5ex;
+  margin-top: 1ex;
 }
 
 ul
@@ -187,10 +190,10 @@ ul
 
 ul.articles
 {
-  padding-top: -3ex;
+  padding-top: 0ex;
   padding-left: 0em;
   padding-right: 0em;
-  margin: 0em;
+  margin: 1.25em;
 }
 
 h1
@@ -248,7 +251,6 @@ a.ext:after
 a.doc:after 
 {
 content: "\21D3";
-  
 }
 
 
@@ -274,6 +276,28 @@ header a:hover
     text-decoration:none;
   }
 
+header a.name
+  {
+    color:#EFF3F6;
+    border-bottom: 0px dotted #FFF;
+  }
+
+header a.name:hover
+  {
+    color:#ECC590;
+    border-bottom: 1px dotted #ECC590;;
+  }
+
+header a.name:after
+  {
+/*     content: " \2302"; */
+/*     content: " \1F879"; */
+  }
+
+header a.name:before
+  {
+    content: "\1F878\0020";
+  }
 
 p {text-align:justify;margin-top:0;margin-botton:0;}
 p.link {text-align:right;margin-top:0em;margin-bottom:0em;}
