@@ -1,0 +1,390 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700&display=swap');
+
+/* Layout */
+
+body {
+    font-family:'Lato', sans-serif;
+    font-size:16px;
+    line-height:1.375;
+    background: #EFF3F6;
+    counter-reset: example;
+    counter-reset: tab;
+    padding-top: 8ex;
+}
+
+div.container {
+    width: 55.75em;
+    margin-left: auto;
+    margin-right: auto;
+    background: #FFF;
+    padding-bottom: 2ex;
+}
+
+
+div.text {
+    text-align: justify;
+    width: 42em;
+    padding: 0.75em;
+    background: #FFF;
+}
+
+header {
+    height: 4ex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-left: 0.5em;
+    padding-top: 1.5ex;
+    background: #214E70;
+    border-width: 1em;
+    border-color: #092942;
+    border-left-style: solid;
+    color: #ADB9C2;
+}
+
+header .nav {
+    position: fixed;
+    right: 0;
+    padding-right: 1em;
+}
+
+footer {
+    /*position: fixed;*/
+    bottom: 0;
+    right: 0;
+    padding-bottom: 1.5ex;
+    padding-right: 0.5em;
+}
+
+/* Sidenote code */
+
+span.note {
+    float: right;
+    width: 13.5em;
+    margin-right: -14.5em;
+    font-family:'Lato', sans-serif;
+    color: #214E70;
+    font-size: 87.5%;
+    font-weight:400;
+    text-align: left;
+    padding-bottom: 1ex;
+    scroll-margin-top: 7ex; /*To avoid overlap with header*/
+}
+
+span.check {
+    color: #FF0000;
+}
+
+p {
+    scroll-margin-top: 8ex; /*To avoid overlap with header*/
+}
+
+p.date {
+}
+
+/* Formatting stuff */
+
+code {
+    font-family: 'Inconsolata', monospace;
+}
+
+.blockquote {
+    padding: 0.75em 1em 0.625em 1em;
+    border-radius: 0.375em;
+    border-left-style: solid;
+    border-width: 0.375em;
+    border-color: #618098;
+    background: #FFFFFF;
+}
+
+.codeblock {
+    width: 75%;
+    padding: 0.75em 0em 0.625em 1em;
+    border-radius: 0.375em;
+    border-left-style: solid;
+    border-width: 0.375em;
+    border-color: #618098;
+    font-family: 'Inconsolata', monospace;
+    font-weight:700;
+    background: black;
+    color: #ADB9C2;
+}
+
+.term {
+    font-variant: small-caps;
+    font-size:112.5%;
+    line-height:88.89%;    /* 1 / 1.125 */
+    letter-Spacing: 0.03125em;
+    color:#663E08;
+}
+
+.sc {
+    font-variant: small-caps;
+    font-feature-settings: "smcp" on;
+    font-size:112.5%;
+    line-height:88.89%;    /* 1 / 1.125 */
+/*    font-weight:400;*/
+    letter-Spacing: 0.03125em;
+}
+
+p.abstract {
+    font-size: 93.75%;
+    color: #666;
+    font-style: italic;
+}
+
+img {
+    text-align: center;
+    border-radius: 0.25em;
+    border-style: solid;
+    border-color: #618098;
+    border-width:0.25em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+}
+
+img.noborder {
+    border-width:0em;
+    border-radius: 0.75em;
+}
+
+hr {
+    width: 97%;
+    max-width: 73em;
+    min-width: 43em;
+    margin: 0px;
+}
+
+em {
+/*     color: #214E70; */
+}
+
+em.ex {
+    color: #214E70;
+}
+
+/*Sections*/
+
+section {
+    scroll-margin-top: 7ex; /*To avoid overlap with header*/
+}
+
+/*Headers*/
+
+h1 {    
+    font-size:150%; /* 150 * 2/3 == 100 (the base font size) */
+    color:#618098;
+    font-weight:700;
+}
+
+h2 { 
+    font-size:137.5%; /* 150 * 11/12 == 137.5 */
+    color:#618098;
+    font-weight:400;
+}
+
+h3 { 
+    font-size:112.5%; /* 150 * 3/4 == 112.5*/
+    color:#618098;
+    font-weight:400;
+}
+
+table {
+/*     background: #FFFFFF; */
+    border-collapse: collapse;
+    margin-left:auto; 
+    margin-right:auto;
+    border-top: 2px solid #000; 
+    border-bottom: 2px solid #000; 
+    caption-side: bottom;
+}
+
+table caption {
+    padding-top: 0.875ex;
+    font-style: italic;
+    text-align: justify;
+}
+
+table caption::before {
+    counter-increment: tab; 
+    font-weight: bold;
+    content: 'Table ' counter(tab) ': ';
+}
+
+tr.head {
+    border-bottom: 1px solid #000;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+tr.sep {
+    border-top: 1px solid #ccc;    
+}
+
+th {
+/*     font-variant:small-caps; */
+}
+
+th, td {
+    padding-right:0.625em;
+    padding-left:0.625em;
+}
+
+
+/*Lists*/
+
+ol {
+    list-style-type: lower-alpha;
+    padding-left: 2em;
+}
+
+/* The following should set up running numbered lists for examples. */
+
+ol.examples {
+    padding-left: 0.625em;
+    list-style-type: decimal;
+}
+
+ol.examples li.ex {
+    list-style: none;
+}
+
+ol.examples li.ex::before {
+    counter-increment: example; 
+    content: "(" counter(example) ")";
+    padding-right: 0.375em;
+}
+
+
+/*Links and link formatting*/
+
+a:link {
+    color:#214E70; 
+    border-bottom: 1px dotted #673E13; 
+    text-decoration:none;
+  }
+  
+a.img:link {
+    color:#214E70; 
+    border-bottom: 0px; 
+    text-decoration:none;
+  }
+  
+a:visited {
+    color:#214E70; 
+    text-decoration:none;
+  }
+  
+a:hover {
+    color:#663E08; 
+    border-bottom: 1px; 
+    text-decoration:none;
+  }
+  
+a.ext:after {
+  content: "\21D7";
+}
+
+a.doc:after {
+content: " \1f5ce";  /* Document character */
+/* content: "\2B8B"; */ /* Down arrow in circle*/
+}
+  
+a.int:after {
+/*content: "\21B4";*/
+content: "\21D3";
+}
+
+a.int_up:after {
+content: "\21D1";
+}
+
+header a:link 
+  {
+    color:#ADB9C2; 
+    border-bottom: 1px dotted #ADB9C2; 
+    text-decoration:none;
+}
+  
+header a:visited 
+  {
+    color:#ADB9C2; 
+    border-bottom: 1px dotted #ADB9C2; 
+    text-decoration:none;  
+}
+  
+header a:hover
+  {
+    color:#ECC590; 
+    border-bottom: 1px; 
+    text-decoration:none;
+  }
+
+header a.name
+  {
+    color:#EFF3F6;
+    border-bottom: 0px dotted #FFF;
+  }
+
+header a.name:hover
+  {
+    color:#ECC590;
+    border-bottom: 1px dotted #ECC590;;
+  }
+
+header a.name:before
+  {
+    content: "\1F878\0020";
+  }
+
+
+/*Lists and list formatting*/
+
+ul {
+    padding-left: 2em;
+}
+
+li {
+    padding-left: 0.375em;
+    margin-bottom: 0.5em;
+}
+
+/*Glosses*/
+/*Code based on answer at https://linguistics.stackexchange.com/questions/3/how-do-i-format-an-interlinear-gloss-for-html*/
+
+ol.glossed { 
+    list-style: none;
+    display:inline-block;    
+    padding: 0em;
+    margin-left:-0.625em;    
+    margin-bottom: -0.625em;
+    vertical-align: top;
+}
+
+ol.word { 
+    list-style: none;
+    padding: 0em;
+    display: inline-block;   
+}
+
+ol.word li.source {
+    margin-right:-0.125em;
+    font-style:italic;    
+}
+
+
+ol.word li.gloss {
+    margin-right:-0.125em;
+    margin-top:-0.375em;
+/*     color: #214E70;     */
+}
+
+ol.trans {
+    list-style: none;    
+    padding: 0em;
+    margin-top:-0.375em;
+}
